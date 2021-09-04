@@ -24,12 +24,12 @@ unzip to the `./data` folder
 | Method | Accuracy | Venue |Paper Link |
 |:---------------:|:-----------------:|:-----------------:|:-----------------:|
 | Cross-entropy | - |  | 
-| DDGSD | - |  | 
-| DKS | - |  | 
-| BYOT | - |  | 
-| Tf-KD-reg | - |  | 
-| CS-KD | - |  | 
-|  FRSKD | - |  |
+| DDGSD | - | AAAI-2019 |  | 
+| DKS | - | CVPR-2019 |  |
+| BYOT | - | ICCV-2019 | [Be Your Own Teacher: Improve the Performance of Convolutional Neural Networks via Self Distillation](https://openaccess.thecvf.com/content_ICCV_2019/papers/Zhang_Be_Your_Own_Teacher_Improve_the_Performance_of_Convolutional_Neural_ICCV_2019_paper.pdf) |
+| Tf-KD-reg |- | CVPR-2020 |  | 
+| CS-KD | - | CVPR-2020 | 
+|  FRSKD | - | CVPR-2021 |
 
 
 #### Comparison of advanced regularization methods Self-KD methods
