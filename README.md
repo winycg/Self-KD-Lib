@@ -21,16 +21,25 @@ CIFAR-100 : [download](http://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz)
 unzip to the `./data` folder
 
 #### Comparison of Self-KD methods
-| Method | Accuracy | Venue |Paper Link |
-|:---------------:|:-----------------:|:-----------------:|:-----------------:|
-| Cross-entropy | - |  | 
-| DDGSD | - | AAAI-2019 |  | 
-| DKS | - | CVPR-2019 |  |
-| BYOT | - | ICCV-2019 | [Be Your Own Teacher: Improve the Performance of Convolutional Neural Networks via Self Distillation](https://openaccess.thecvf.com/content_ICCV_2019/papers/Zhang_Be_Your_Own_Teacher_Improve_the_Performance_of_Convolutional_Neural_ICCV_2019_paper.pdf) |
-| Tf-KD-reg |- | CVPR-2020 |  | 
-| CS-KD | - | CVPR-2020 | 
-|  FRSKD | - | CVPR-2021 |
+| Method | Venue | Accuracy(%) |
+|:---------------:|:-----------------:|:-----------------:|
+| Cross-entropy |  |- |
+| DDGSD |  AAAI-2019 | |
+| DKS |  CVPR-2019 |  |
+| SAD |  ICCV-2019 |  |
+| BYOT |  ICCV-2019 |  |
+| Tf-KD-reg | CVPR-2020 |  | 
+| CS-KD |  CVPR-2020 | 
+|  FRSKD |  CVPR-2021 |
 
+##### Reference
+DDGSD: Data-Distortion Guided Self-Distillation for Deep Neural Networks. AAAI-2019
+
+DKS: Deeply-supervised Knowledge Synergy. CVPR-2019.
+
+SAD: Learning Lightweight Lane Detection CNNs by Self Attention Distillation. ICCV-2019.
+
+BYOT: Be Your Own Teacher: Improve the Performance of Convolutional Neural Networks via Self Distillation. ICCV-2019
 
 #### Comparison of advanced regularization methods Self-KD methods
 
