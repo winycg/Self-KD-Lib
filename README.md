@@ -61,20 +61,20 @@ unzip to the `./data` folder
 | Mixup [7]| ICLR-2018 | 81.39 |
 | CutMix [8]| ICCV-2019 | 82.47 |
 
-Label Smoothing: Rethinking the inception architecture for computer vision. CVPR-2016.
+[1] Label Smoothing: Rethinking the inception architecture for computer vision. CVPR-2016.
 
-Virtual Softmax:  Virtual class enhanced discriminative embedding learning. NeurIPS-2018.
+[2] Virtual Softmax:  Virtual class enhanced discriminative embedding learning. NeurIPS-2018.
 
-Focal Loss: Focal loss for dense object detection. ICCV-2017. 
+[3] Focal Loss: Focal loss for dense object detection. ICCV-2017. 
 
-Maximum Entropy: Regularizing neural networks by penalizing confident output distributions. ICLR Workshops 2017.
+[4] Maximum Entropy: Regularizing neural networks by penalizing confident output distributions. ICLR Workshops 2017.
 
-Cutout: Improved regularization of convolutional neural networks with cutout. arXiv preprint arXiv:1708.04552
+[5] Cutout: Improved regularization of convolutional neural networks with cutout. arXiv preprint arXiv:1708.04552
 
-Random Erase: Random erasing data augmentation. AAAI-2020.
+[6] Random Erase: Random erasing data augmentation. AAAI-2020.
 
-Mixup: mixup: Beyond empirical risk minimization. ICLR-2018.
+[7] Mixup: mixup: Beyond empirical risk minimization. ICLR-2018.
 
-CutMix: Cutmix: Regularization strategy to train strong classifiers with localizable features. ICCV-2019.
+[8] CutMix: Cutmix: Regularization strategy to train strong classifiers with localizable features. ICCV-2019.
 
 
