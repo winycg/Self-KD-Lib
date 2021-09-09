@@ -26,11 +26,11 @@ unzip to the `./data` folder
 | Cross-entropy | - | 77.79 |
 | DDGSD [1] |  AAAI-2019 | 81.73 |
 | DKS [2]|  CVPR-2019 | 80.75 |
-| SAD [3] |  ICCV-2019 |  |
-| BYOT [4] |  ICCV-2019 |  |
+| SAD [3] |  ICCV-2019 | 78.33 |
+| BYOT [4] |  ICCV-2019 | 79.76 |
 | Tf-KD-reg [5] | CVPR-2020 | 79.84 | 
 | CS-KD [6]|  CVPR-2020 | 79.99 |
-|  FRSKD [7]|  CVPR-2021 |    |
+|  FRSKD [7]|  CVPR-2021 |  80.51  |
 
 ##### Reference
 [1] DDGSD: Data-Distortion Guided Self-Distillation for Deep Neural Networks. AAAI-2019
@@ -56,8 +56,8 @@ unzip to the `./data` folder
 | Virtual Softmax [2] | NeurIPS-2018 | 79.68 | 
 | Focal Loss [3]| ICCV-2017 | 79.31 | 
 | Maximum Entropy [4] | ICLR Workshops 2017 | 78.11 | 
-| Cutout [5]| ArXiv.2017 |  |
-| Random Erase [6]| AAAI-2020 |  |
+| Cutout [5]| ArXiv.2017 | 80.42 |
+| Random Erase [6]| AAAI-2020 | 80.64 |
 | Mixup [7]| ICLR-2018 | 81.39 |
 | CutMix [8]| ICCV-2019 | 82.47 |
 
