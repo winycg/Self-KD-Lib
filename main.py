@@ -23,7 +23,7 @@ import math
 parser = argparse.ArgumentParser(description='PyTorch CIFAR Training')
 parser.add_argument('--dataset', default='CIFAR-100', type=str, help='Dataset')
 parser.add_argument('--data', default='./data/', type=str, help='Dataset directory')
-parser.add_argument('--arch', default='CIFAR_ResNet18', type=str, help='network architecture')
+parser.add_argument('--arch', default='CIFAR_ResNet50', type=str, help='network architecture')
 parser.add_argument('--init-lr', default=0.1, type=float, help='learning rate')
 parser.add_argument('--warmup-epoch', default=0, type=int, help='warmup epoch')
 parser.add_argument('--lr-type', default='multistep', type=str, help='learning rate strategy')
@@ -57,7 +57,8 @@ if not os.path.isdir('result'):
 info = str(os.path.basename(__file__).split('.')[0]) \
           + '_dataset_' + args.dataset \
           + '_arch_' + args.arch \
-          + '_KD_' + args.method \
+          + '_method_' + args.method \
+          + '_data_aug_' + args.data_aug \
           + '_' + str(args.manual_seed)
 
 args.log_txt = 'result/' + info + '.txt'
@@ -177,6 +178,11 @@ def train(epoch, criterion_list, optimizer):
             loss_cls += dks_loss_cls
             loss_div += dks_loss_div
 
+        elif args.method == 'SAD':
+            logit, sad_loss_cls, sad_loss_div = SAD(net, inputs, targets, criterion_cls, criterion_div)
+            loss_cls += sad_loss_cls
+            loss_div += sad_loss_div
+        
         elif args.method == 'BYOT':
             logit, byot_loss_cls, byot_loss_div = BYOT(net, inputs, targets, criterion_cls, criterion_div)
             loss_cls += byot_loss_cls

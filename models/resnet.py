@@ -3,7 +3,8 @@ import torch.nn as nn
 import torch.utils.model_zoo as model_zoo
 import torch.nn.functional as F
 
-__all__ = ['CIFAR_ResNet18', 'CIFAR_ResNet18_dks', 'CIFAR_ResNet18_byot']
+__all__ = ['CIFAR_ResNet18', 'CIFAR_ResNet18_dks', 'CIFAR_ResNet18_byot',
+            'CIFAR_ResNet50', 'CIFAR_ResNet50_dks', 'CIFAR_ResNet50_byot']
 
 
 def conv3x3(in_planes, out_planes, stride=1, groups=1):
@@ -33,7 +34,12 @@ class BasicBlock(nn.Module):
         self.relu = nn.ReLU(inplace=True)
         self.conv2 = conv3x3(planes, planes)
         self.bn2 = norm_layer(planes)
-        self.downsample = downsample
+        if stride != 1 or inplanes != self.expansion*planes:
+            self.downsample = nn.Sequential(
+                nn.Conv2d(inplanes, self.expansion*planes, kernel_size=1, stride=stride, bias=False)
+            )
+        else:
+            self.downsample = None
         self.stride = stride
 
     def forward(self, x):
@@ -72,8 +78,14 @@ class Bottleneck(nn.Module):
         self.conv3 = conv1x1(width, planes * self.expansion)
         self.bn3 = norm_layer(planes * self.expansion)
         self.relu = nn.ReLU(inplace=True)
-        self.downsample = downsample
+
         self.stride = stride
+        if stride != 1 or inplanes != self.expansion*planes:
+            self.downsample = nn.Sequential(
+                nn.Conv2d(inplanes, self.expansion*planes, kernel_size=1, stride=stride, bias=False)
+            )
+        else:
+            self.downsample = None
 
     def forward(self, x):
         identity = x
@@ -160,7 +172,7 @@ class CIFAR_ResNet(nn.Module):
             self.in_planes = planes * block.expansion
         return nn.Sequential(*layers)
 
-    def forward(self, x, y=None, loss_type='cross_entropy', feature=False):
+    def forward(self, x, y=None, loss_type='cross_entropy', feature=False, embedding=False):
         out = x
         out = self.conv1(out)
         out = self.bn1(out)
@@ -175,7 +187,7 @@ class CIFAR_ResNet(nn.Module):
         out = self.fc(embedding0)
 
         if len(self.branch_layers) != 0:
-            x = self.layer3_head2(node2)
+            x = self.layer3_head2(out2)
             x = self.layer4_head2(x)
             f2 = x
             x = self.avgpool(x)
@@ -184,7 +196,7 @@ class CIFAR_ResNet(nn.Module):
 
             x2 = self.fc_head2(x)
 
-            x = self.layer4_head1(node1)
+            x = self.layer4_head1(out3)
             f1 = x
             x = self.avgpool(x)
             x = x.view(x.size(0), -1)
@@ -198,6 +210,8 @@ class CIFAR_ResNet(nn.Module):
             if loss_type == 'cross_entropy':
                 if feature:
                     return out, [out1, out2, out3, out4]
+                if embedding:
+                    return out, embedding0
                 else:
                     return out
             elif loss_type == 'virtual_softmax':
@@ -218,14 +232,22 @@ def CIFAR_ResNet18_dks(pretrained=False, **kwargs):
 def CIFAR_ResNet18_byot(pretrained=False, **kwargs):
     return CIFAR_ResNet(PreActBlock, [2,2,2,2], branch_layers=[[1, 1], [1]], **kwargs)
 
+def CIFAR_ResNet50(pretrained=False, **kwargs):
+    return CIFAR_ResNet(Bottleneck, [3,4,6,3], branch_layers=[], **kwargs)
+
+def CIFAR_ResNet50_dks(pretrained=False, **kwargs):
+    return CIFAR_ResNet(Bottleneck, [2,2,2,2], branch_layers=[[1, 2], [2]], **kwargs)
+
+def CIFAR_ResNet50_byot(pretrained=False, **kwargs):
+    return CIFAR_ResNet(Bottleneck, [2,2,2,2], branch_layers=[[1, 1], [1]], **kwargs)
 
 
 if __name__ == '__main__':
     net = CIFAR_ResNet18(num_classes=100)
-    x = torch.randn(2, 3, 64, 64)
+    x = torch.randn(2, 3, 32, 32)
     y = net(x)
     import sys
     sys.path.append('..')
     from utils import cal_param_size, cal_multi_adds
     print('Params: %.2fM, Multi-adds: %.3fM'
-          % (cal_param_size(net) / 1e6, cal_multi_adds(net, (2, 3, 64, 64)) / 1e6))
+          % (cal_param_size(net) / 1e6, cal_multi_adds(net, (2, 3, 32, 32)) / 1e6))

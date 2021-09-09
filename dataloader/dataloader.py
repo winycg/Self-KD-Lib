@@ -94,7 +94,7 @@ def load_dataset(args):
     transforms.Normalize([0.5071, 0.4867, 0.4408],
                         [0.2675, 0.2565, 0.2761]),
     ]
-    if args.data_aug == 'cutout':
+    if args.data_aug == 'cutout': 
         transforms_list.append(Cutout(n_holes=1, length=8))
     if args.data_aug == 'random_erase':
         transforms_list.append(RandomErasing(mean=[0.5071, 0.4867, 0.4408]))

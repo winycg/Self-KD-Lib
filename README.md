@@ -20,6 +20,8 @@ CIFAR-100 : [download](http://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz)
 
 unzip to the `./data` folder
 
+The commands for running various methods can be found in `main.sh` 
+
 #### Comparison of Self-KD methods on ResNet-50
 | Method | Venue | Accuracy(%) |
 |:---------------:|:-----------------:|:-----------------:|

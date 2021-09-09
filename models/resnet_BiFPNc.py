@@ -3,8 +3,9 @@ import torch.nn as nn
 import torch.nn.functional as F
 import math 
 
-from .resnet import CIFAR_ResNet18
-__all__ = ['BiFPNc', 'CIFAR_ResNet_BiFPN']
+from .resnet import CIFAR_ResNet18, CIFAR_ResNet50
+
+__all__ = ['BiFPNc', 'CIFAR_ResNet18_BiFPN', 'CIFAR_ResNet50_BiFPN']
 
 
 class MaxPool2dStaticSamePadding(nn.Module):
@@ -183,9 +184,9 @@ class BiFPN_layer(nn.Module):
         return out_layer
 
 
-class CIFAR_ResNet_BiFPN(nn.Module):
+class CIFAR_ResNet18_BiFPN(nn.Module):
     def __init__(self, num_classes=100):
-        super(CIFAR_ResNet_BiFPN, self).__init__()
+        super(CIFAR_ResNet18_BiFPN, self).__init__()
         self.backbone = CIFAR_ResNet18(num_classes=100)
         self.bifpn = BiFPNc(self.backbone.network_channels, num_classes, repeat=1, depth=[2] * 3, width=2)
 
@@ -195,13 +196,25 @@ class CIFAR_ResNet_BiFPN(nn.Module):
         return logit, features, bi_feats, bi_logits
 
 
+class CIFAR_ResNet50_BiFPN(nn.Module):
+    def __init__(self, num_classes=100):
+        super(CIFAR_ResNet50_BiFPN, self).__init__()
+        self.backbone = CIFAR_ResNet50(num_classes=100)
+        self.bifpn = BiFPNc(self.backbone.network_channels, num_classes, repeat=1, depth=[1] * 3, width=1)
+
+    def forward(self, x):
+        logit, features = self.backbone(x, feature=True)
+        bi_feats, bi_logits = self.bifpn(features, preact=False)
+        return logit, features, bi_feats, bi_logits
+
+
 
 if __name__ == '__main__':
-    net = CIFAR_ResNet_BiFPN(num_classes=100)
-    x = torch.randn(2, 3, 64, 64)
+    net = CIFAR_ResNet50_BiFPN(num_classes=100)
+    x = torch.randn(2, 3, 32, 32)
     y = net(x)
     import sys
     sys.path.append('..')
     from utils import cal_param_size, cal_multi_adds
     print('Params: %.2fM, Multi-adds: %.3fM'
-          % (cal_param_size(net) / 1e6, cal_multi_adds(net, (2, 3, 64, 64)) / 1e6))
+          % (cal_param_size(net) / 1e6, cal_multi_adds(net, (2, 3, 32, 32)) / 1e6))

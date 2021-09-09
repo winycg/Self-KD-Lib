@@ -1,0 +1,804 @@
+==========
+Args:Namespace(T=4, arch='CIFAR_ResNet50_byot', batch_size=128, checkpoint_dir='./checkpoint/main_dataset_CIFAR-100_arch_CIFAR_ResNet50_byot_method_BYOT_0', data='/home/ycg/hhd/dataset', data_aug=None, dataset='CIFAR-100', epochs=200, eval_checkpoint='./checkpoint/resnet18_best.pth', evaluate=False, gpu_id='1', init_lr=0.1, log_txt='result/main_dataset_CIFAR-100_arch_CIFAR_ResNet50_byot_method_BYOT_0.txt', lr_type='multistep', manual_seed=0, method='BYOT', milestones=[100, 150], mix_alpha=0.4, num_workers=8, resume=False, resume_checkpoint='./checkpoint/resnet18.pth', warmup_epoch=5, weight_cls=1, weight_decay=0.0005, weight_kd=1)
+==========
+Epoch:0	 lr:0.02000	 duration:67.026
+train_loss:12.44025	 train_loss_cls:12.04688	 train_loss_div:0.39336
+train top1_acc: 0.0889 	 train top5_acc:0.2702
+test_loss:3.68631	 test top1_acc:0.1352 	 test top5_acc:0.3906 
+Epoch:1	 lr:0.04000	 duration:66.002
+train_loss:10.25770	 train_loss_cls:9.62355	 train_loss_div:0.63414
+train top1_acc: 0.2108 	 train top5_acc:0.5067
+test_loss:3.36006	 test top1_acc:0.2260 	 test top5_acc:0.5222 
+Epoch:2	 lr:0.06000	 duration:65.549
+train_loss:8.54531	 train_loss_cls:7.85638	 train_loss_div:0.68892
+train top1_acc: 0.3179 	 train top5_acc:0.6469
+test_loss:2.56255	 test top1_acc:0.3428 	 test top5_acc:0.6739 
+Epoch:3	 lr:0.08000	 duration:66.100
+train_loss:7.40812	 train_loss_cls:6.79600	 train_loss_div:0.61212
+train top1_acc: 0.3914 	 train top5_acc:0.7279
+test_loss:2.49734	 test top1_acc:0.3672 	 test top5_acc:0.6987 
+Epoch:4	 lr:0.10000	 duration:65.312
+train_loss:6.68097	 train_loss_cls:6.14432	 train_loss_div:0.53664
+train top1_acc: 0.4380 	 train top5_acc:0.7697
+test_loss:2.49061	 test top1_acc:0.3704 	 test top5_acc:0.7011 
+Epoch:5	 lr:0.10000	 duration:64.984
+train_loss:6.11942	 train_loss_cls:5.63114	 train_loss_div:0.48828
+train top1_acc: 0.4816 	 train top5_acc:0.8051
+test_loss:2.15140	 test top1_acc:0.4486 	 test top5_acc:0.7680 
+Epoch:6	 lr:0.10000	 duration:62.766
+train_loss:5.62278	 train_loss_cls:5.15697	 train_loss_div:0.46581
+train top1_acc: 0.5219 	 train top5_acc:0.8319
+test_loss:1.93210	 test top1_acc:0.4826 	 test top5_acc:0.7970 
+Epoch:7	 lr:0.10000	 duration:64.776
+train_loss:5.30979	 train_loss_cls:4.86797	 train_loss_div:0.44182
+train top1_acc: 0.5475 	 train top5_acc:0.8480
+test_loss:2.01559	 test top1_acc:0.4590 	 test top5_acc:0.7892 
+Epoch:8	 lr:0.10000	 duration:64.850
+train_loss:5.08382	 train_loss_cls:4.64044	 train_loss_div:0.44338
+train top1_acc: 0.5659 	 train top5_acc:0.8618
+test_loss:2.00375	 test top1_acc:0.4803 	 test top5_acc:0.8042 
+Epoch:9	 lr:0.10000	 duration:65.973
+train_loss:4.95549	 train_loss_cls:4.50199	 train_loss_div:0.45350
+train top1_acc: 0.5779 	 train top5_acc:0.8688
+test_loss:2.10158	 test top1_acc:0.4788 	 test top5_acc:0.7934 
+Epoch:10	 lr:0.10000	 duration:65.241
+train_loss:4.82515	 train_loss_cls:4.36210	 train_loss_div:0.46305
+train top1_acc: 0.5915 	 train top5_acc:0.8751
+test_loss:2.10911	 test top1_acc:0.4619 	 test top5_acc:0.7838 
+Epoch:11	 lr:0.10000	 duration:64.720
+train_loss:4.75829	 train_loss_cls:4.28042	 train_loss_div:0.47787
+train top1_acc: 0.5978 	 train top5_acc:0.8818
+test_loss:1.78476	 test top1_acc:0.5191 	 test top5_acc:0.8238 
+Epoch:12	 lr:0.10000	 duration:65.808
+train_loss:4.67989	 train_loss_cls:4.18135	 train_loss_div:0.49854
+train top1_acc: 0.6086 	 train top5_acc:0.8843
+test_loss:2.02315	 test top1_acc:0.4803 	 test top5_acc:0.8004 
+Epoch:13	 lr:0.10000	 duration:65.688
+train_loss:4.62364	 train_loss_cls:4.11272	 train_loss_div:0.51091
+train top1_acc: 0.6090 	 train top5_acc:0.8882
+test_loss:1.79857	 test top1_acc:0.5190 	 test top5_acc:0.8262 
+Epoch:14	 lr:0.10000	 duration:65.497
+train_loss:4.56455	 train_loss_cls:4.03876	 train_loss_div:0.52579
+train top1_acc: 0.6194 	 train top5_acc:0.8916
+test_loss:1.65211	 test top1_acc:0.5475 	 test top5_acc:0.8403 
+Epoch:15	 lr:0.10000	 duration:65.136
+train_loss:4.50086	 train_loss_cls:3.96286	 train_loss_div:0.53800
+train top1_acc: 0.6257 	 train top5_acc:0.8945
+test_loss:1.74168	 test top1_acc:0.5256 	 test top5_acc:0.8312 
+Epoch:16	 lr:0.10000	 duration:64.609
+train_loss:4.44947	 train_loss_cls:3.90540	 train_loss_div:0.54407
+train top1_acc: 0.6302 	 train top5_acc:0.8989
+test_loss:1.67950	 test top1_acc:0.5503 	 test top5_acc:0.8428 
+Epoch:17	 lr:0.10000	 duration:64.605
+train_loss:4.42531	 train_loss_cls:3.86143	 train_loss_div:0.56388
+train top1_acc: 0.6335 	 train top5_acc:0.9004
+test_loss:1.88628	 test top1_acc:0.5120 	 test top5_acc:0.8080 
+Epoch:18	 lr:0.10000	 duration:65.286
+train_loss:4.38061	 train_loss_cls:3.81547	 train_loss_div:0.56515
+train top1_acc: 0.6373 	 train top5_acc:0.9042
+test_loss:1.79093	 test top1_acc:0.5292 	 test top5_acc:0.8159 
+Epoch:19	 lr:0.10000	 duration:66.032
+train_loss:4.33131	 train_loss_cls:3.75359	 train_loss_div:0.57773
+train top1_acc: 0.6435 	 train top5_acc:0.9062
+test_loss:1.86638	 test top1_acc:0.5136 	 test top5_acc:0.8102 
+Epoch:20	 lr:0.10000	 duration:62.664
+train_loss:4.31994	 train_loss_cls:3.73414	 train_loss_div:0.58579
+train top1_acc: 0.6489 	 train top5_acc:0.9063
+test_loss:1.78112	 test top1_acc:0.5218 	 test top5_acc:0.8287 
+Epoch:21	 lr:0.10000	 duration:62.043
+train_loss:4.29390	 train_loss_cls:3.69805	 train_loss_div:0.59585
+train top1_acc: 0.6480 	 train top5_acc:0.9087
+test_loss:1.63942	 test top1_acc:0.5585 	 test top5_acc:0.8432 
+Epoch:22	 lr:0.10000	 duration:61.590
+train_loss:4.24663	 train_loss_cls:3.65404	 train_loss_div:0.59260
+train top1_acc: 0.6509 	 train top5_acc:0.9106
+test_loss:2.17726	 test top1_acc:0.4624 	 test top5_acc:0.7832 
+Epoch:23	 lr:0.10000	 duration:62.511
+train_loss:4.24403	 train_loss_cls:3.63822	 train_loss_div:0.60580
+train top1_acc: 0.6530 	 train top5_acc:0.9105
+test_loss:2.06006	 test top1_acc:0.4850 	 test top5_acc:0.7919 
+Epoch:24	 lr:0.10000	 duration:61.743
+train_loss:4.20773	 train_loss_cls:3.60228	 train_loss_div:0.60544
+train top1_acc: 0.6563 	 train top5_acc:0.9126
+test_loss:1.68153	 test top1_acc:0.5525 	 test top5_acc:0.8500 
+Epoch:25	 lr:0.10000	 duration:62.340
+train_loss:4.19954	 train_loss_cls:3.58418	 train_loss_div:0.61536
+train top1_acc: 0.6599 	 train top5_acc:0.9129
+test_loss:1.66978	 test top1_acc:0.5604 	 test top5_acc:0.8364 
+Epoch:26	 lr:0.10000	 duration:61.481
+train_loss:4.16954	 train_loss_cls:3.54562	 train_loss_div:0.62392
+train top1_acc: 0.6644 	 train top5_acc:0.9149
+test_loss:1.96584	 test top1_acc:0.5054 	 test top5_acc:0.8164 
+Epoch:27	 lr:0.10000	 duration:62.197
+train_loss:4.14426	 train_loss_cls:3.51885	 train_loss_div:0.62541
+train top1_acc: 0.6639 	 train top5_acc:0.9160
+test_loss:1.60616	 test top1_acc:0.5636 	 test top5_acc:0.8451 
+Epoch:28	 lr:0.10000	 duration:61.827
+train_loss:4.12055	 train_loss_cls:3.49239	 train_loss_div:0.62816
+train top1_acc: 0.6670 	 train top5_acc:0.9181
+test_loss:1.73481	 test top1_acc:0.5393 	 test top5_acc:0.8315 
+Epoch:29	 lr:0.10000	 duration:61.953
+train_loss:4.12314	 train_loss_cls:3.48869	 train_loss_div:0.63445
+train top1_acc: 0.6667 	 train top5_acc:0.9177
+test_loss:1.83362	 test top1_acc:0.5307 	 test top5_acc:0.8109 
+Epoch:30	 lr:0.10000	 duration:61.009
+train_loss:4.10747	 train_loss_cls:3.46043	 train_loss_div:0.64705
+train top1_acc: 0.6702 	 train top5_acc:0.9181
+test_loss:1.87226	 test top1_acc:0.5143 	 test top5_acc:0.8234 
+Epoch:31	 lr:0.10000	 duration:61.959
+train_loss:4.09210	 train_loss_cls:3.44329	 train_loss_div:0.64881
+train top1_acc: 0.6719 	 train top5_acc:0.9198
+test_loss:1.76257	 test top1_acc:0.5399 	 test top5_acc:0.8407 
+Epoch:32	 lr:0.10000	 duration:52.512
+train_loss:4.09058	 train_loss_cls:3.43647	 train_loss_div:0.65411
+train top1_acc: 0.6701 	 train top5_acc:0.9212
+test_loss:1.79148	 test top1_acc:0.5401 	 test top5_acc:0.8385 
+Epoch:33	 lr:0.10000	 duration:50.951
+train_loss:4.05260	 train_loss_cls:3.40033	 train_loss_div:0.65227
+train top1_acc: 0.6743 	 train top5_acc:0.9233
+test_loss:1.89268	 test top1_acc:0.5287 	 test top5_acc:0.8154 
+Epoch:34	 lr:0.10000	 duration:60.258
+train_loss:4.05715	 train_loss_cls:3.39423	 train_loss_div:0.66292
+train top1_acc: 0.6753 	 train top5_acc:0.9226
+test_loss:1.72526	 test top1_acc:0.5430 	 test top5_acc:0.8377 
+Epoch:35	 lr:0.10000	 duration:60.819
+train_loss:4.04158	 train_loss_cls:3.38075	 train_loss_div:0.66083
+train top1_acc: 0.6789 	 train top5_acc:0.9231
+test_loss:1.92616	 test top1_acc:0.5294 	 test top5_acc:0.8258 
+Epoch:36	 lr:0.10000	 duration:61.846
+train_loss:4.05683	 train_loss_cls:3.39038	 train_loss_div:0.66645
+train top1_acc: 0.6784 	 train top5_acc:0.9226
+test_loss:1.58676	 test top1_acc:0.5665 	 test top5_acc:0.8523 
+Epoch:37	 lr:0.10000	 duration:61.146
+train_loss:4.04793	 train_loss_cls:3.38122	 train_loss_div:0.66671
+train top1_acc: 0.6760 	 train top5_acc:0.9208
+test_loss:1.61536	 test top1_acc:0.5764 	 test top5_acc:0.8503 
+Epoch:38	 lr:0.10000	 duration:61.933
+train_loss:4.01663	 train_loss_cls:3.34602	 train_loss_div:0.67060
+train top1_acc: 0.6796 	 train top5_acc:0.9242
+test_loss:1.58964	 test top1_acc:0.5714 	 test top5_acc:0.8437 
+Epoch:39	 lr:0.10000	 duration:62.767
+train_loss:4.01079	 train_loss_cls:3.33849	 train_loss_div:0.67230
+train top1_acc: 0.6805 	 train top5_acc:0.9247
+test_loss:2.09448	 test top1_acc:0.4820 	 test top5_acc:0.7969 
+Epoch:40	 lr:0.10000	 duration:60.802
+train_loss:3.98372	 train_loss_cls:3.31397	 train_loss_div:0.66975
+train top1_acc: 0.6834 	 train top5_acc:0.9255
+test_loss:1.84515	 test top1_acc:0.5245 	 test top5_acc:0.8275 
+Epoch:41	 lr:0.10000	 duration:61.752
+train_loss:3.97430	 train_loss_cls:3.30253	 train_loss_div:0.67177
+train top1_acc: 0.6841 	 train top5_acc:0.9254
+test_loss:1.65987	 test top1_acc:0.5578 	 test top5_acc:0.8485 
+Epoch:42	 lr:0.10000	 duration:61.508
+train_loss:3.98206	 train_loss_cls:3.30332	 train_loss_div:0.67874
+train top1_acc: 0.6851 	 train top5_acc:0.9249
+test_loss:1.57870	 test top1_acc:0.5909 	 test top5_acc:0.8636 
+Epoch:43	 lr:0.10000	 duration:62.000
+train_loss:3.96236	 train_loss_cls:3.28042	 train_loss_div:0.68194
+train top1_acc: 0.6878 	 train top5_acc:0.9272
+test_loss:1.67082	 test top1_acc:0.5630 	 test top5_acc:0.8484 
+Epoch:44	 lr:0.10000	 duration:61.532
+train_loss:3.95907	 train_loss_cls:3.28544	 train_loss_div:0.67363
+train top1_acc: 0.6878 	 train top5_acc:0.9261
+test_loss:1.61331	 test top1_acc:0.5721 	 test top5_acc:0.8485 
+Epoch:45	 lr:0.10000	 duration:62.156
+train_loss:3.94947	 train_loss_cls:3.27429	 train_loss_div:0.67518
+train top1_acc: 0.6859 	 train top5_acc:0.9259
+test_loss:1.68765	 test top1_acc:0.5571 	 test top5_acc:0.8348 
+Epoch:46	 lr:0.10000	 duration:126.955
+train_loss:3.95484	 train_loss_cls:3.27162	 train_loss_div:0.68323
+train top1_acc: 0.6901 	 train top5_acc:0.9261
+test_loss:1.68270	 test top1_acc:0.5600 	 test top5_acc:0.8393 
+Epoch:47	 lr:0.10000	 duration:85.957
+train_loss:3.94613	 train_loss_cls:3.25849	 train_loss_div:0.68765
+train top1_acc: 0.6869 	 train top5_acc:0.9271
+test_loss:1.84483	 test top1_acc:0.5348 	 test top5_acc:0.8210 
+Epoch:48	 lr:0.10000	 duration:63.870
+train_loss:3.96336	 train_loss_cls:3.27913	 train_loss_div:0.68423
+train top1_acc: 0.6881 	 train top5_acc:0.9267
+test_loss:1.81834	 test top1_acc:0.5353 	 test top5_acc:0.8385 
+Epoch:49	 lr:0.10000	 duration:63.118
+train_loss:3.94370	 train_loss_cls:3.25033	 train_loss_div:0.69338
+train top1_acc: 0.6901 	 train top5_acc:0.9287
+test_loss:1.60766	 test top1_acc:0.5698 	 test top5_acc:0.8538 
+Epoch:50	 lr:0.10000	 duration:62.665
+train_loss:3.94492	 train_loss_cls:3.25061	 train_loss_div:0.69431
+train top1_acc: 0.6889 	 train top5_acc:0.9291
+test_loss:1.67134	 test top1_acc:0.5574 	 test top5_acc:0.8466 
+Epoch:51	 lr:0.10000	 duration:62.786
+train_loss:3.94397	 train_loss_cls:3.23993	 train_loss_div:0.70404
+train top1_acc: 0.6899 	 train top5_acc:0.9290
+test_loss:1.93644	 test top1_acc:0.5172 	 test top5_acc:0.8122 
+Epoch:52	 lr:0.10000	 duration:63.163
+train_loss:3.91416	 train_loss_cls:3.22943	 train_loss_div:0.68473
+train top1_acc: 0.6927 	 train top5_acc:0.9284
+test_loss:1.72757	 test top1_acc:0.5532 	 test top5_acc:0.8332 
+Epoch:53	 lr:0.10000	 duration:62.812
+train_loss:3.91197	 train_loss_cls:3.21757	 train_loss_div:0.69440
+train top1_acc: 0.6930 	 train top5_acc:0.9281
+test_loss:1.81592	 test top1_acc:0.5289 	 test top5_acc:0.8181 
+Epoch:54	 lr:0.10000	 duration:61.868
+train_loss:3.89834	 train_loss_cls:3.20771	 train_loss_div:0.69062
+train top1_acc: 0.6946 	 train top5_acc:0.9278
+test_loss:2.06399	 test top1_acc:0.4880 	 test top5_acc:0.7911 
+Epoch:55	 lr:0.10000	 duration:62.810
+train_loss:3.92221	 train_loss_cls:3.22212	 train_loss_div:0.70009
+train top1_acc: 0.6929 	 train top5_acc:0.9295
+test_loss:1.62717	 test top1_acc:0.5830 	 test top5_acc:0.8470 
+Epoch:56	 lr:0.10000	 duration:61.779
+train_loss:3.91070	 train_loss_cls:3.21436	 train_loss_div:0.69634
+train top1_acc: 0.6911 	 train top5_acc:0.9303
+test_loss:1.73724	 test top1_acc:0.5483 	 test top5_acc:0.8355 
+Epoch:57	 lr:0.10000	 duration:61.586
+train_loss:3.87958	 train_loss_cls:3.18050	 train_loss_div:0.69908
+train top1_acc: 0.6980 	 train top5_acc:0.9310
+test_loss:1.55050	 test top1_acc:0.5814 	 test top5_acc:0.8595 
+Epoch:58	 lr:0.10000	 duration:61.499
+train_loss:3.91503	 train_loss_cls:3.21094	 train_loss_div:0.70409
+train top1_acc: 0.6918 	 train top5_acc:0.9299
+test_loss:1.73684	 test top1_acc:0.5525 	 test top5_acc:0.8400 
+Epoch:59	 lr:0.10000	 duration:61.837
+train_loss:3.89410	 train_loss_cls:3.18371	 train_loss_div:0.71038
+train top1_acc: 0.6948 	 train top5_acc:0.9316
+test_loss:1.68882	 test top1_acc:0.5567 	 test top5_acc:0.8442 
+Epoch:60	 lr:0.10000	 duration:62.489
+train_loss:3.87546	 train_loss_cls:3.17693	 train_loss_div:0.69853
+train top1_acc: 0.6969 	 train top5_acc:0.9313
+test_loss:1.61221	 test top1_acc:0.5772 	 test top5_acc:0.8659 
+Epoch:61	 lr:0.10000	 duration:61.496
+train_loss:3.89384	 train_loss_cls:3.18800	 train_loss_div:0.70584
+train top1_acc: 0.6963 	 train top5_acc:0.9323
+test_loss:1.71719	 test top1_acc:0.5579 	 test top5_acc:0.8421 
+Epoch:62	 lr:0.10000	 duration:61.173
+train_loss:3.89277	 train_loss_cls:3.17894	 train_loss_div:0.71383
+train top1_acc: 0.6980 	 train top5_acc:0.9296
+test_loss:1.61890	 test top1_acc:0.5699 	 test top5_acc:0.8582 
+Epoch:63	 lr:0.10000	 duration:62.412
+train_loss:3.86182	 train_loss_cls:3.14883	 train_loss_div:0.71299
+train top1_acc: 0.6978 	 train top5_acc:0.9328
+test_loss:1.54880	 test top1_acc:0.5899 	 test top5_acc:0.8688 
+Epoch:64	 lr:0.10000	 duration:61.555
+train_loss:3.88327	 train_loss_cls:3.17168	 train_loss_div:0.71159
+train top1_acc: 0.6962 	 train top5_acc:0.9308
+test_loss:2.03526	 test top1_acc:0.5054 	 test top5_acc:0.8009 
+Epoch:65	 lr:0.10000	 duration:61.354
+train_loss:3.85080	 train_loss_cls:3.13684	 train_loss_div:0.71396
+train top1_acc: 0.7001 	 train top5_acc:0.9337
+test_loss:1.69707	 test top1_acc:0.5573 	 test top5_acc:0.8397 
+Epoch:66	 lr:0.10000	 duration:61.399
+train_loss:3.87638	 train_loss_cls:3.16513	 train_loss_div:0.71125
+train top1_acc: 0.6995 	 train top5_acc:0.9317
+test_loss:2.06345	 test top1_acc:0.4921 	 test top5_acc:0.7891 
+Epoch:67	 lr:0.10000	 duration:61.676
+train_loss:3.86612	 train_loss_cls:3.15486	 train_loss_div:0.71127
+train top1_acc: 0.7001 	 train top5_acc:0.9324
+test_loss:1.65670	 test top1_acc:0.5811 	 test top5_acc:0.8478 
+Epoch:68	 lr:0.10000	 duration:62.513
+train_loss:3.85043	 train_loss_cls:3.14157	 train_loss_div:0.70886
+train top1_acc: 0.7010 	 train top5_acc:0.9321
+test_loss:1.56959	 test top1_acc:0.5908 	 test top5_acc:0.8625 
+Epoch:69	 lr:0.10000	 duration:61.466
+train_loss:3.86741	 train_loss_cls:3.15513	 train_loss_div:0.71229
+train top1_acc: 0.6959 	 train top5_acc:0.9316
+test_loss:1.62403	 test top1_acc:0.5743 	 test top5_acc:0.8600 
+Epoch:70	 lr:0.10000	 duration:61.789
+train_loss:3.84217	 train_loss_cls:3.12772	 train_loss_div:0.71445
+train top1_acc: 0.7009 	 train top5_acc:0.9327
+test_loss:1.65863	 test top1_acc:0.5642 	 test top5_acc:0.8559 
+Epoch:71	 lr:0.10000	 duration:58.306
+train_loss:3.85423	 train_loss_cls:3.13485	 train_loss_div:0.71938
+train top1_acc: 0.6978 	 train top5_acc:0.9353
+test_loss:1.54785	 test top1_acc:0.5929 	 test top5_acc:0.8611 
+Epoch:72	 lr:0.10000	 duration:48.787
+train_loss:3.86229	 train_loss_cls:3.13493	 train_loss_div:0.72735
+train top1_acc: 0.7003 	 train top5_acc:0.9338
+test_loss:1.78423	 test top1_acc:0.5577 	 test top5_acc:0.8309 
+Epoch:73	 lr:0.10000	 duration:57.169
+train_loss:3.83895	 train_loss_cls:3.13245	 train_loss_div:0.70650
+train top1_acc: 0.7024 	 train top5_acc:0.9322
+test_loss:1.73820	 test top1_acc:0.5579 	 test top5_acc:0.8315 
+Epoch:74	 lr:0.10000	 duration:61.644
+train_loss:3.82737	 train_loss_cls:3.10799	 train_loss_div:0.71938
+train top1_acc: 0.7025 	 train top5_acc:0.9335
+test_loss:1.60372	 test top1_acc:0.5851 	 test top5_acc:0.8629 
+Epoch:75	 lr:0.10000	 duration:60.796
+train_loss:3.83904	 train_loss_cls:3.11798	 train_loss_div:0.72105
+train top1_acc: 0.7035 	 train top5_acc:0.9318
+test_loss:1.72706	 test top1_acc:0.5574 	 test top5_acc:0.8441 
+Epoch:76	 lr:0.10000	 duration:61.608
+train_loss:3.86154	 train_loss_cls:3.13429	 train_loss_div:0.72725
+train top1_acc: 0.7004 	 train top5_acc:0.9327
+test_loss:1.70364	 test top1_acc:0.5620 	 test top5_acc:0.8389 
+Epoch:77	 lr:0.10000	 duration:61.661
+train_loss:3.83799	 train_loss_cls:3.11668	 train_loss_div:0.72132
+train top1_acc: 0.7024 	 train top5_acc:0.9326
+test_loss:1.52099	 test top1_acc:0.5841 	 test top5_acc:0.8640 
+Epoch:78	 lr:0.10000	 duration:61.824
+train_loss:3.81651	 train_loss_cls:3.09693	 train_loss_div:0.71957
+train top1_acc: 0.7029 	 train top5_acc:0.9340
+test_loss:1.80428	 test top1_acc:0.5443 	 test top5_acc:0.8345 
+Epoch:79	 lr:0.10000	 duration:61.776
+train_loss:3.81476	 train_loss_cls:3.08300	 train_loss_div:0.73176
+train top1_acc: 0.7073 	 train top5_acc:0.9342
+test_loss:1.57829	 test top1_acc:0.5888 	 test top5_acc:0.8650 
+Epoch:80	 lr:0.10000	 duration:61.484
+train_loss:3.84701	 train_loss_cls:3.10646	 train_loss_div:0.74055
+train top1_acc: 0.7032 	 train top5_acc:0.9329
+test_loss:1.73932	 test top1_acc:0.5584 	 test top5_acc:0.8378 
+Epoch:81	 lr:0.10000	 duration:60.993
+train_loss:3.82952	 train_loss_cls:3.11544	 train_loss_div:0.71408
+train top1_acc: 0.7008 	 train top5_acc:0.9333
+test_loss:1.87612	 test top1_acc:0.5298 	 test top5_acc:0.8225 
+Epoch:82	 lr:0.10000	 duration:60.557
+train_loss:3.82220	 train_loss_cls:3.10515	 train_loss_div:0.71705
+train top1_acc: 0.7033 	 train top5_acc:0.9341
+test_loss:1.83133	 test top1_acc:0.5487 	 test top5_acc:0.8338 
+Epoch:83	 lr:0.10000	 duration:62.115
+train_loss:3.81278	 train_loss_cls:3.09200	 train_loss_div:0.72078
+train top1_acc: 0.7037 	 train top5_acc:0.9342
+test_loss:1.66714	 test top1_acc:0.5702 	 test top5_acc:0.8488 
+Epoch:84	 lr:0.10000	 duration:61.697
+train_loss:3.81150	 train_loss_cls:3.09798	 train_loss_div:0.71353
+train top1_acc: 0.7032 	 train top5_acc:0.9347
+test_loss:1.63990	 test top1_acc:0.5845 	 test top5_acc:0.8537 
+Epoch:85	 lr:0.10000	 duration:61.781
+train_loss:3.79958	 train_loss_cls:3.08051	 train_loss_div:0.71907
+train top1_acc: 0.7072 	 train top5_acc:0.9350
+test_loss:1.63344	 test top1_acc:0.5665 	 test top5_acc:0.8457 
+Epoch:86	 lr:0.10000	 duration:62.307
+train_loss:3.80058	 train_loss_cls:3.08068	 train_loss_div:0.71990
+train top1_acc: 0.7054 	 train top5_acc:0.9349
+test_loss:2.09812	 test top1_acc:0.5173 	 test top5_acc:0.7988 
+Epoch:87	 lr:0.10000	 duration:61.559
+train_loss:3.83281	 train_loss_cls:3.09993	 train_loss_div:0.73288
+train top1_acc: 0.7035 	 train top5_acc:0.9335
+test_loss:1.72237	 test top1_acc:0.5622 	 test top5_acc:0.8463 
+Epoch:88	 lr:0.10000	 duration:62.127
+train_loss:3.78706	 train_loss_cls:3.05194	 train_loss_div:0.73512
+train top1_acc: 0.7081 	 train top5_acc:0.9357
+test_loss:1.94841	 test top1_acc:0.5178 	 test top5_acc:0.8060 
+Epoch:89	 lr:0.10000	 duration:61.950
+train_loss:3.82261	 train_loss_cls:3.09583	 train_loss_div:0.72678
+train top1_acc: 0.7006 	 train top5_acc:0.9342
+test_loss:1.48786	 test top1_acc:0.5871 	 test top5_acc:0.8678 
+Epoch:90	 lr:0.10000	 duration:61.769
+train_loss:3.81240	 train_loss_cls:3.08372	 train_loss_div:0.72868
+train top1_acc: 0.7079 	 train top5_acc:0.9355
+test_loss:1.48993	 test top1_acc:0.5971 	 test top5_acc:0.8772 
+Epoch:91	 lr:0.10000	 duration:61.293
+train_loss:3.81010	 train_loss_cls:3.08451	 train_loss_div:0.72559
+train top1_acc: 0.7060 	 train top5_acc:0.9344
+test_loss:1.79888	 test top1_acc:0.5486 	 test top5_acc:0.8212 
+Epoch:92	 lr:0.10000	 duration:61.446
+train_loss:3.79673	 train_loss_cls:3.06428	 train_loss_div:0.73245
+train top1_acc: 0.7078 	 train top5_acc:0.9361
+test_loss:1.52709	 test top1_acc:0.5887 	 test top5_acc:0.8637 
+Epoch:93	 lr:0.10000	 duration:62.040
+train_loss:3.79452	 train_loss_cls:3.07060	 train_loss_div:0.72392
+train top1_acc: 0.7063 	 train top5_acc:0.9345
+test_loss:1.78568	 test top1_acc:0.5494 	 test top5_acc:0.8282 
+Epoch:94	 lr:0.10000	 duration:61.621
+train_loss:3.80735	 train_loss_cls:3.07395	 train_loss_div:0.73340
+train top1_acc: 0.7066 	 train top5_acc:0.9355
+test_loss:1.68950	 test top1_acc:0.5526 	 test top5_acc:0.8386 
+Epoch:95	 lr:0.10000	 duration:60.960
+train_loss:3.79130	 train_loss_cls:3.07365	 train_loss_div:0.71766
+train top1_acc: 0.7052 	 train top5_acc:0.9356
+test_loss:1.69763	 test top1_acc:0.5709 	 test top5_acc:0.8482 
+Epoch:96	 lr:0.10000	 duration:61.409
+train_loss:3.78824	 train_loss_cls:3.05188	 train_loss_div:0.73636
+train top1_acc: 0.7099 	 train top5_acc:0.9341
+test_loss:1.58814	 test top1_acc:0.5831 	 test top5_acc:0.8548 
+Epoch:97	 lr:0.10000	 duration:61.817
+train_loss:3.77996	 train_loss_cls:3.04605	 train_loss_div:0.73391
+train top1_acc: 0.7084 	 train top5_acc:0.9362
+test_loss:3.20345	 test top1_acc:0.4212 	 test top5_acc:0.7328 
+Epoch:98	 lr:0.10000	 duration:61.509
+train_loss:3.79596	 train_loss_cls:3.06936	 train_loss_div:0.72660
+train top1_acc: 0.7045 	 train top5_acc:0.9353
+test_loss:1.75245	 test top1_acc:0.5496 	 test top5_acc:0.8343 
+Epoch:99	 lr:0.10000	 duration:62.417
+train_loss:3.77463	 train_loss_cls:3.04997	 train_loss_div:0.72466
+train top1_acc: 0.7097 	 train top5_acc:0.9354
+test_loss:1.56063	 test top1_acc:0.5914 	 test top5_acc:0.8720 
+Epoch:100	 lr:0.10000	 duration:61.939
+train_loss:3.78004	 train_loss_cls:3.05217	 train_loss_div:0.72786
+train top1_acc: 0.7081 	 train top5_acc:0.9358
+test_loss:1.53393	 test top1_acc:0.5893 	 test top5_acc:0.8703 
+Epoch:101	 lr:0.10000	 duration:61.540
+train_loss:3.77847	 train_loss_cls:3.05040	 train_loss_div:0.72807
+train top1_acc: 0.7076 	 train top5_acc:0.9357
+test_loss:1.66266	 test top1_acc:0.5630 	 test top5_acc:0.8569 
+Epoch:102	 lr:0.10000	 duration:61.737
+train_loss:3.79123	 train_loss_cls:3.05796	 train_loss_div:0.73327
+train top1_acc: 0.7086 	 train top5_acc:0.9364
+test_loss:1.49884	 test top1_acc:0.6037 	 test top5_acc:0.8689 
+Epoch:103	 lr:0.10000	 duration:61.517
+train_loss:3.78301	 train_loss_cls:3.05598	 train_loss_div:0.72702
+train top1_acc: 0.7104 	 train top5_acc:0.9352
+test_loss:1.75728	 test top1_acc:0.5541 	 test top5_acc:0.8357 
+Epoch:104	 lr:0.10000	 duration:61.677
+train_loss:3.77374	 train_loss_cls:3.02867	 train_loss_div:0.74507
+train top1_acc: 0.7092 	 train top5_acc:0.9375
+test_loss:1.71347	 test top1_acc:0.5582 	 test top5_acc:0.8450 
+Epoch:105	 lr:0.01000	 duration:61.505
+train_loss:2.35222	 train_loss_cls:1.81131	 train_loss_div:0.54091
+train top1_acc: 0.8347 	 train top5_acc:0.9766
+test_loss:0.81367	 test top1_acc:0.7649 	 test top5_acc:0.9480 
+Epoch:106	 lr:0.01000	 duration:62.121
+train_loss:1.99476	 train_loss_cls:1.43435	 train_loss_div:0.56041
+train top1_acc: 0.8740 	 train top5_acc:0.9856
+test_loss:0.80436	 test top1_acc:0.7707 	 test top5_acc:0.9507 
+Epoch:107	 lr:0.01000	 duration:62.198
+train_loss:1.88262	 train_loss_cls:1.28048	 train_loss_div:0.60214
+train top1_acc: 0.8893 	 train top5_acc:0.9895
+test_loss:0.81156	 test top1_acc:0.7688 	 test top5_acc:0.9515 
+Epoch:108	 lr:0.01000	 duration:61.424
+train_loss:1.82876	 train_loss_cls:1.17603	 train_loss_div:0.65273
+train top1_acc: 0.9004 	 train top5_acc:0.9918
+test_loss:0.80985	 test top1_acc:0.7731 	 test top5_acc:0.9486 
+Epoch:109	 lr:0.01000	 duration:60.279
+train_loss:1.77678	 train_loss_cls:1.08536	 train_loss_div:0.69141
+train top1_acc: 0.9091 	 train top5_acc:0.9934
+test_loss:0.80437	 test top1_acc:0.7792 	 test top5_acc:0.9531 
+Epoch:110	 lr:0.01000	 duration:61.764
+train_loss:1.74374	 train_loss_cls:1.00470	 train_loss_div:0.73904
+train top1_acc: 0.9193 	 train top5_acc:0.9942
+test_loss:0.81263	 test top1_acc:0.7763 	 test top5_acc:0.9535 
+Epoch:111	 lr:0.01000	 duration:62.118
+train_loss:1.71844	 train_loss_cls:0.94371	 train_loss_div:0.77473
+train top1_acc: 0.9256 	 train top5_acc:0.9955
+test_loss:0.82746	 test top1_acc:0.7750 	 test top5_acc:0.9517 
+Epoch:112	 lr:0.01000	 duration:58.254
+train_loss:1.69867	 train_loss_cls:0.88575	 train_loss_div:0.81292
+train top1_acc: 0.9317 	 train top5_acc:0.9962
+test_loss:0.85406	 test top1_acc:0.7727 	 test top5_acc:0.9501 
+Epoch:113	 lr:0.01000	 duration:49.138
+train_loss:1.69079	 train_loss_cls:0.83172	 train_loss_div:0.85908
+train top1_acc: 0.9376 	 train top5_acc:0.9969
+test_loss:0.86271	 test top1_acc:0.7712 	 test top5_acc:0.9509 
+Epoch:114	 lr:0.01000	 duration:61.104
+train_loss:1.68703	 train_loss_cls:0.79730	 train_loss_div:0.88972
+train top1_acc: 0.9420 	 train top5_acc:0.9975
+test_loss:0.89062	 test top1_acc:0.7687 	 test top5_acc:0.9482 
+Epoch:115	 lr:0.01000	 duration:61.153
+train_loss:1.67261	 train_loss_cls:0.75309	 train_loss_div:0.91952
+train top1_acc: 0.9460 	 train top5_acc:0.9984
+test_loss:0.90304	 test top1_acc:0.7653 	 test top5_acc:0.9481 
+Epoch:116	 lr:0.01000	 duration:61.660
+train_loss:1.66364	 train_loss_cls:0.71672	 train_loss_div:0.94692
+train top1_acc: 0.9502 	 train top5_acc:0.9985
+test_loss:0.90902	 test top1_acc:0.7683 	 test top5_acc:0.9484 
+Epoch:117	 lr:0.01000	 duration:60.497
+train_loss:1.66055	 train_loss_cls:0.68366	 train_loss_div:0.97689
+train top1_acc: 0.9539 	 train top5_acc:0.9987
+test_loss:0.91419	 test top1_acc:0.7718 	 test top5_acc:0.9490 
+Epoch:118	 lr:0.01000	 duration:61.823
+train_loss:1.64432	 train_loss_cls:0.65235	 train_loss_div:0.99197
+train top1_acc: 0.9560 	 train top5_acc:0.9990
+test_loss:0.93984	 test top1_acc:0.7673 	 test top5_acc:0.9476 
+Epoch:119	 lr:0.01000	 duration:61.777
+train_loss:1.64850	 train_loss_cls:0.62925	 train_loss_div:1.01925
+train top1_acc: 0.9587 	 train top5_acc:0.9993
+test_loss:0.92683	 test top1_acc:0.7689 	 test top5_acc:0.9449 
+Epoch:120	 lr:0.01000	 duration:60.880
+train_loss:1.64988	 train_loss_cls:0.60412	 train_loss_div:1.04576
+train top1_acc: 0.9615 	 train top5_acc:0.9994
+test_loss:0.96904	 test top1_acc:0.7654 	 test top5_acc:0.9437 
+Epoch:121	 lr:0.01000	 duration:61.794
+train_loss:1.65650	 train_loss_cls:0.60028	 train_loss_div:1.05621
+train top1_acc: 0.9613 	 train top5_acc:0.9995
+test_loss:0.92743	 test top1_acc:0.7699 	 test top5_acc:0.9469 
+Epoch:122	 lr:0.01000	 duration:61.657
+train_loss:1.64281	 train_loss_cls:0.57015	 train_loss_div:1.07266
+train top1_acc: 0.9632 	 train top5_acc:0.9995
+test_loss:0.98715	 test top1_acc:0.7600 	 test top5_acc:0.9420 
+Epoch:123	 lr:0.01000	 duration:61.702
+train_loss:1.62255	 train_loss_cls:0.55088	 train_loss_div:1.07167
+train top1_acc: 0.9666 	 train top5_acc:0.9996
+test_loss:1.00790	 test top1_acc:0.7571 	 test top5_acc:0.9423 
+Epoch:124	 lr:0.01000	 duration:62.306
+train_loss:1.63129	 train_loss_cls:0.54709	 train_loss_div:1.08420
+train top1_acc: 0.9660 	 train top5_acc:0.9996
+test_loss:0.94299	 test top1_acc:0.7708 	 test top5_acc:0.9449 
+Epoch:125	 lr:0.01000	 duration:61.486
+train_loss:1.62949	 train_loss_cls:0.53289	 train_loss_div:1.09661
+train top1_acc: 0.9663 	 train top5_acc:0.9998
+test_loss:0.96865	 test top1_acc:0.7667 	 test top5_acc:0.9405 
+Epoch:126	 lr:0.01000	 duration:62.126
+train_loss:1.61840	 train_loss_cls:0.52748	 train_loss_div:1.09092
+train top1_acc: 0.9661 	 train top5_acc:0.9997
+test_loss:1.00076	 test top1_acc:0.7602 	 test top5_acc:0.9425 
+Epoch:127	 lr:0.01000	 duration:61.313
+train_loss:1.61090	 train_loss_cls:0.51730	 train_loss_div:1.09360
+train top1_acc: 0.9675 	 train top5_acc:0.9996
+test_loss:1.00645	 test top1_acc:0.7612 	 test top5_acc:0.9414 
+Epoch:128	 lr:0.01000	 duration:61.553
+train_loss:1.60522	 train_loss_cls:0.50588	 train_loss_div:1.09934
+train top1_acc: 0.9675 	 train top5_acc:0.9998
+test_loss:0.99005	 test top1_acc:0.7655 	 test top5_acc:0.9434 
+Epoch:129	 lr:0.01000	 duration:61.060
+train_loss:1.61523	 train_loss_cls:0.51337	 train_loss_div:1.10186
+train top1_acc: 0.9665 	 train top5_acc:0.9997
+test_loss:0.99597	 test top1_acc:0.7625 	 test top5_acc:0.9399 
+Epoch:130	 lr:0.01000	 duration:62.520
+train_loss:1.58543	 train_loss_cls:0.49255	 train_loss_div:1.09288
+train top1_acc: 0.9687 	 train top5_acc:0.9997
+test_loss:1.06460	 test top1_acc:0.7527 	 test top5_acc:0.9378 
+Epoch:131	 lr:0.01000	 duration:62.333
+train_loss:1.60028	 train_loss_cls:0.49398	 train_loss_div:1.10630
+train top1_acc: 0.9682 	 train top5_acc:0.9996
+test_loss:1.02776	 test top1_acc:0.7568 	 test top5_acc:0.9378 
+Epoch:132	 lr:0.01000	 duration:62.542
+train_loss:1.57961	 train_loss_cls:0.48621	 train_loss_div:1.09340
+train top1_acc: 0.9688 	 train top5_acc:0.9996
+test_loss:1.02706	 test top1_acc:0.7545 	 test top5_acc:0.9401 
+Epoch:133	 lr:0.01000	 duration:61.675
+train_loss:1.56903	 train_loss_cls:0.47184	 train_loss_div:1.09719
+train top1_acc: 0.9708 	 train top5_acc:0.9996
+test_loss:1.04430	 test top1_acc:0.7511 	 test top5_acc:0.9389 
+Epoch:134	 lr:0.01000	 duration:61.657
+train_loss:1.57589	 train_loss_cls:0.48518	 train_loss_div:1.09071
+train top1_acc: 0.9672 	 train top5_acc:0.9997
+test_loss:1.06084	 test top1_acc:0.7510 	 test top5_acc:0.9374 
+Epoch:135	 lr:0.01000	 duration:62.046
+train_loss:1.58047	 train_loss_cls:0.47927	 train_loss_div:1.10119
+train top1_acc: 0.9691 	 train top5_acc:0.9997
+test_loss:1.07877	 test top1_acc:0.7459 	 test top5_acc:0.9334 
+Epoch:136	 lr:0.01000	 duration:61.607
+train_loss:1.57533	 train_loss_cls:0.48472	 train_loss_div:1.09061
+train top1_acc: 0.9670 	 train top5_acc:0.9998
+test_loss:1.09503	 test top1_acc:0.7485 	 test top5_acc:0.9364 
+Epoch:137	 lr:0.01000	 duration:61.681
+train_loss:1.55641	 train_loss_cls:0.47140	 train_loss_div:1.08502
+train top1_acc: 0.9676 	 train top5_acc:0.9997
+test_loss:1.06890	 test top1_acc:0.7484 	 test top5_acc:0.9374 
+Epoch:138	 lr:0.01000	 duration:61.827
+train_loss:1.55370	 train_loss_cls:0.45930	 train_loss_div:1.09440
+train top1_acc: 0.9696 	 train top5_acc:0.9997
+test_loss:1.10088	 test top1_acc:0.7464 	 test top5_acc:0.9332 
+Epoch:139	 lr:0.01000	 duration:62.012
+train_loss:1.57622	 train_loss_cls:0.46716	 train_loss_div:1.10906
+train top1_acc: 0.9682 	 train top5_acc:0.9996
+test_loss:1.10989	 test top1_acc:0.7501 	 test top5_acc:0.9321 
+Epoch:140	 lr:0.01000	 duration:61.473
+train_loss:1.56478	 train_loss_cls:0.46643	 train_loss_div:1.09835
+train top1_acc: 0.9670 	 train top5_acc:0.9997
+test_loss:1.05522	 test top1_acc:0.7469 	 test top5_acc:0.9317 
+Epoch:141	 lr:0.01000	 duration:61.916
+train_loss:1.54418	 train_loss_cls:0.45992	 train_loss_div:1.08425
+train top1_acc: 0.9685 	 train top5_acc:0.9996
+test_loss:1.10011	 test top1_acc:0.7430 	 test top5_acc:0.9375 
+Epoch:142	 lr:0.01000	 duration:61.973
+train_loss:1.55562	 train_loss_cls:0.45049	 train_loss_div:1.10513
+train top1_acc: 0.9686 	 train top5_acc:0.9996
+test_loss:1.12053	 test top1_acc:0.7367 	 test top5_acc:0.9313 
+Epoch:143	 lr:0.01000	 duration:61.676
+train_loss:1.57313	 train_loss_cls:0.46099	 train_loss_div:1.11215
+train top1_acc: 0.9679 	 train top5_acc:0.9995
+test_loss:1.10358	 test top1_acc:0.7460 	 test top5_acc:0.9354 
+Epoch:144	 lr:0.01000	 duration:61.507
+train_loss:1.56876	 train_loss_cls:0.46444	 train_loss_div:1.10432
+train top1_acc: 0.9663 	 train top5_acc:0.9996
+test_loss:1.11298	 test top1_acc:0.7372 	 test top5_acc:0.9285 
+Epoch:145	 lr:0.01000	 duration:61.639
+train_loss:1.53839	 train_loss_cls:0.45354	 train_loss_div:1.08485
+train top1_acc: 0.9675 	 train top5_acc:0.9998
+test_loss:1.08173	 test top1_acc:0.7440 	 test top5_acc:0.9353 
+Epoch:146	 lr:0.01000	 duration:62.224
+train_loss:1.54167	 train_loss_cls:0.45160	 train_loss_div:1.09007
+train top1_acc: 0.9681 	 train top5_acc:0.9995
+test_loss:1.09614	 test top1_acc:0.7462 	 test top5_acc:0.9341 
+Epoch:147	 lr:0.01000	 duration:61.228
+train_loss:1.55286	 train_loss_cls:0.45526	 train_loss_div:1.09759
+train top1_acc: 0.9671 	 train top5_acc:0.9996
+test_loss:1.21024	 test top1_acc:0.7342 	 test top5_acc:0.9270 
+Epoch:148	 lr:0.01000	 duration:61.775
+train_loss:1.56615	 train_loss_cls:0.45988	 train_loss_div:1.10627
+train top1_acc: 0.9662 	 train top5_acc:0.9997
+test_loss:1.17678	 test top1_acc:0.7365 	 test top5_acc:0.9276 
+Epoch:149	 lr:0.01000	 duration:61.846
+train_loss:1.53849	 train_loss_cls:0.44528	 train_loss_div:1.09321
+train top1_acc: 0.9676 	 train top5_acc:0.9996
+test_loss:1.18861	 test top1_acc:0.7294 	 test top5_acc:0.9290 
+Epoch:150	 lr:0.01000	 duration:62.102
+train_loss:1.55289	 train_loss_cls:0.45618	 train_loss_div:1.09671
+train top1_acc: 0.9662 	 train top5_acc:0.9995
+test_loss:1.15243	 test top1_acc:0.7358 	 test top5_acc:0.9330 
+Epoch:151	 lr:0.01000	 duration:61.877
+train_loss:1.54562	 train_loss_cls:0.45360	 train_loss_div:1.09201
+train top1_acc: 0.9660 	 train top5_acc:0.9994
+test_loss:1.12033	 test top1_acc:0.7435 	 test top5_acc:0.9302 
+Epoch:152	 lr:0.01000	 duration:61.565
+train_loss:1.54029	 train_loss_cls:0.44016	 train_loss_div:1.10013
+train top1_acc: 0.9680 	 train top5_acc:0.9997
+test_loss:1.14095	 test top1_acc:0.7348 	 test top5_acc:0.9302 
+Epoch:153	 lr:0.01000	 duration:57.051
+train_loss:1.55066	 train_loss_cls:0.45175	 train_loss_div:1.09891
+train top1_acc: 0.9649 	 train top5_acc:0.9995
+test_loss:1.12117	 test top1_acc:0.7467 	 test top5_acc:0.9285 
+Epoch:154	 lr:0.01000	 duration:48.846
+train_loss:1.54037	 train_loss_cls:0.45442	 train_loss_div:1.08595
+train top1_acc: 0.9663 	 train top5_acc:0.9994
+test_loss:1.13181	 test top1_acc:0.7422 	 test top5_acc:0.9296 
+Epoch:155	 lr:0.00100	 duration:60.198
+train_loss:1.12155	 train_loss_cls:0.21461	 train_loss_div:0.90694
+train top1_acc: 0.9900 	 train top5_acc:1.0000
+test_loss:0.89963	 test top1_acc:0.7880 	 test top5_acc:0.9476 
+Epoch:156	 lr:0.00100	 duration:60.126
+train_loss:0.98119	 train_loss_cls:0.14631	 train_loss_div:0.83488
+train top1_acc: 0.9956 	 train top5_acc:1.0000
+test_loss:0.89129	 test top1_acc:0.7896 	 test top5_acc:0.9479 
+Epoch:157	 lr:0.00100	 duration:61.087
+train_loss:0.94130	 train_loss_cls:0.12372	 train_loss_div:0.81758
+train top1_acc: 0.9968 	 train top5_acc:1.0000
+test_loss:0.88792	 test top1_acc:0.7934 	 test top5_acc:0.9486 
+Epoch:158	 lr:0.00100	 duration:62.061
+train_loss:0.91455	 train_loss_cls:0.11126	 train_loss_div:0.80329
+train top1_acc: 0.9974 	 train top5_acc:1.0000
+test_loss:0.89856	 test top1_acc:0.7919 	 test top5_acc:0.9487 
+Epoch:159	 lr:0.00100	 duration:61.645
+train_loss:0.89427	 train_loss_cls:0.10273	 train_loss_div:0.79154
+train top1_acc: 0.9979 	 train top5_acc:1.0000
+test_loss:0.89184	 test top1_acc:0.7938 	 test top5_acc:0.9483 
+Epoch:160	 lr:0.00100	 duration:61.554
+train_loss:0.87502	 train_loss_cls:0.09332	 train_loss_div:0.78170
+train top1_acc: 0.9983 	 train top5_acc:1.0000
+test_loss:0.89133	 test top1_acc:0.7947 	 test top5_acc:0.9490 
+Epoch:161	 lr:0.00100	 duration:61.733
+train_loss:0.86102	 train_loss_cls:0.09002	 train_loss_div:0.77100
+train top1_acc: 0.9984 	 train top5_acc:1.0000
+test_loss:0.89878	 test top1_acc:0.7935 	 test top5_acc:0.9495 
+Epoch:162	 lr:0.00100	 duration:61.544
+train_loss:0.84950	 train_loss_cls:0.08365	 train_loss_div:0.76585
+train top1_acc: 0.9984 	 train top5_acc:1.0000
+test_loss:0.89684	 test top1_acc:0.7926 	 test top5_acc:0.9502 
+Epoch:163	 lr:0.00100	 duration:60.874
+train_loss:0.83459	 train_loss_cls:0.08062	 train_loss_div:0.75398
+train top1_acc: 0.9986 	 train top5_acc:1.0000
+test_loss:0.89418	 test top1_acc:0.7939 	 test top5_acc:0.9493 
+Epoch:164	 lr:0.00100	 duration:61.566
+train_loss:0.82526	 train_loss_cls:0.07906	 train_loss_div:0.74620
+train top1_acc: 0.9988 	 train top5_acc:1.0000
+test_loss:0.89204	 test top1_acc:0.7969 	 test top5_acc:0.9504 
+Epoch:165	 lr:0.00100	 duration:61.668
+train_loss:0.81114	 train_loss_cls:0.07458	 train_loss_div:0.73656
+train top1_acc: 0.9986 	 train top5_acc:1.0000
+test_loss:0.89468	 test top1_acc:0.7952 	 test top5_acc:0.9500 
+Epoch:166	 lr:0.00100	 duration:62.067
+train_loss:0.79969	 train_loss_cls:0.07398	 train_loss_div:0.72571
+train top1_acc: 0.9988 	 train top5_acc:1.0000
+test_loss:0.90092	 test top1_acc:0.7953 	 test top5_acc:0.9503 
+Epoch:167	 lr:0.00100	 duration:62.245
+train_loss:0.78982	 train_loss_cls:0.06886	 train_loss_div:0.72096
+train top1_acc: 0.9989 	 train top5_acc:1.0000
+test_loss:0.90192	 test top1_acc:0.7950 	 test top5_acc:0.9506 
+Epoch:168	 lr:0.00100	 duration:61.651
+train_loss:0.78370	 train_loss_cls:0.06753	 train_loss_div:0.71617
+train top1_acc: 0.9990 	 train top5_acc:1.0000
+test_loss:0.90591	 test top1_acc:0.7946 	 test top5_acc:0.9496 
+Epoch:169	 lr:0.00100	 duration:62.475
+train_loss:0.78003	 train_loss_cls:0.06729	 train_loss_div:0.71274
+train top1_acc: 0.9987 	 train top5_acc:1.0000
+test_loss:0.90548	 test top1_acc:0.7951 	 test top5_acc:0.9497 
+Epoch:170	 lr:0.00100	 duration:61.797
+train_loss:0.76556	 train_loss_cls:0.06488	 train_loss_div:0.70067
+train top1_acc: 0.9989 	 train top5_acc:1.0000
+test_loss:0.90501	 test top1_acc:0.7928 	 test top5_acc:0.9501 
+Epoch:171	 lr:0.00100	 duration:62.216
+train_loss:0.75705	 train_loss_cls:0.06304	 train_loss_div:0.69400
+train top1_acc: 0.9992 	 train top5_acc:1.0000
+test_loss:0.89773	 test top1_acc:0.7949 	 test top5_acc:0.9496 
+Epoch:172	 lr:0.00100	 duration:62.214
+train_loss:0.75016	 train_loss_cls:0.06314	 train_loss_div:0.68702
+train top1_acc: 0.9989 	 train top5_acc:1.0000
+test_loss:0.90266	 test top1_acc:0.7953 	 test top5_acc:0.9499 
+Epoch:173	 lr:0.00100	 duration:61.718
+train_loss:0.74127	 train_loss_cls:0.06019	 train_loss_div:0.68108
+train top1_acc: 0.9990 	 train top5_acc:1.0000
+test_loss:0.90372	 test top1_acc:0.7963 	 test top5_acc:0.9493 
+Epoch:174	 lr:0.00100	 duration:61.513
+train_loss:0.73321	 train_loss_cls:0.05805	 train_loss_div:0.67516
+train top1_acc: 0.9992 	 train top5_acc:1.0000
+test_loss:0.90772	 test top1_acc:0.7932 	 test top5_acc:0.9499 
+Epoch:175	 lr:0.00100	 duration:62.044
+train_loss:0.72612	 train_loss_cls:0.05704	 train_loss_div:0.66907
+train top1_acc: 0.9991 	 train top5_acc:1.0000
+test_loss:0.90304	 test top1_acc:0.7968 	 test top5_acc:0.9489 
+Epoch:176	 lr:0.00100	 duration:61.642
+train_loss:0.71833	 train_loss_cls:0.05755	 train_loss_div:0.66078
+train top1_acc: 0.9990 	 train top5_acc:1.0000
+test_loss:0.90241	 test top1_acc:0.7970 	 test top5_acc:0.9501 
+Epoch:177	 lr:0.00100	 duration:62.485
+train_loss:0.71201	 train_loss_cls:0.05675	 train_loss_div:0.65526
+train top1_acc: 0.9991 	 train top5_acc:1.0000
+test_loss:0.90673	 test top1_acc:0.7949 	 test top5_acc:0.9488 
+Epoch:178	 lr:0.00100	 duration:61.394
+train_loss:0.70226	 train_loss_cls:0.05572	 train_loss_div:0.64654
+train top1_acc: 0.9989 	 train top5_acc:1.0000
+test_loss:0.90719	 test top1_acc:0.7968 	 test top5_acc:0.9492 
+Epoch:179	 lr:0.00100	 duration:61.223
+train_loss:0.69938	 train_loss_cls:0.05434	 train_loss_div:0.64504
+train top1_acc: 0.9991 	 train top5_acc:1.0000
+test_loss:0.90202	 test top1_acc:0.7959 	 test top5_acc:0.9493 
+Epoch:180	 lr:0.00100	 duration:61.107
+train_loss:0.68772	 train_loss_cls:0.05330	 train_loss_div:0.63442
+train top1_acc: 0.9993 	 train top5_acc:1.0000
+test_loss:0.90265	 test top1_acc:0.7956 	 test top5_acc:0.9496 
+Epoch:181	 lr:0.00100	 duration:60.394
+train_loss:0.68603	 train_loss_cls:0.05266	 train_loss_div:0.63337
+train top1_acc: 0.9992 	 train top5_acc:1.0000
+test_loss:0.90426	 test top1_acc:0.7940 	 test top5_acc:0.9493 
+Epoch:182	 lr:0.00100	 duration:60.741
+train_loss:0.68154	 train_loss_cls:0.05200	 train_loss_div:0.62954
+train top1_acc: 0.9990 	 train top5_acc:1.0000
+test_loss:0.90324	 test top1_acc:0.7941 	 test top5_acc:0.9490 
+Epoch:183	 lr:0.00100	 duration:61.876
+train_loss:0.67162	 train_loss_cls:0.05081	 train_loss_div:0.62081
+train top1_acc: 0.9994 	 train top5_acc:1.0000
+test_loss:0.90795	 test top1_acc:0.7945 	 test top5_acc:0.9504 
+Epoch:184	 lr:0.00100	 duration:61.495
+train_loss:0.66528	 train_loss_cls:0.05118	 train_loss_div:0.61410
+train top1_acc: 0.9992 	 train top5_acc:1.0000
+test_loss:0.90024	 test top1_acc:0.7941 	 test top5_acc:0.9487 
+Epoch:185	 lr:0.00100	 duration:61.968
+train_loss:0.65918	 train_loss_cls:0.04981	 train_loss_div:0.60937
+train top1_acc: 0.9992 	 train top5_acc:1.0000
+test_loss:0.89279	 test top1_acc:0.7947 	 test top5_acc:0.9493 
+Epoch:186	 lr:0.00100	 duration:62.117
+train_loss:0.65079	 train_loss_cls:0.04963	 train_loss_div:0.60116
+train top1_acc: 0.9994 	 train top5_acc:1.0000
+test_loss:0.89731	 test top1_acc:0.7959 	 test top5_acc:0.9500 
+Epoch:187	 lr:0.00100	 duration:61.781
+train_loss:0.64931	 train_loss_cls:0.04790	 train_loss_div:0.60142
+train top1_acc: 0.9992 	 train top5_acc:1.0000
+test_loss:0.89932	 test top1_acc:0.7941 	 test top5_acc:0.9503 
+Epoch:188	 lr:0.00100	 duration:62.371
+train_loss:0.64024	 train_loss_cls:0.04672	 train_loss_div:0.59352
+train top1_acc: 0.9994 	 train top5_acc:1.0000
+test_loss:0.89664	 test top1_acc:0.7948 	 test top5_acc:0.9492 
+Epoch:189	 lr:0.00100	 duration:62.337
+train_loss:0.63710	 train_loss_cls:0.04795	 train_loss_div:0.58915
+train top1_acc: 0.9992 	 train top5_acc:1.0000
+test_loss:0.90227	 test top1_acc:0.7941 	 test top5_acc:0.9499 
+Epoch:190	 lr:0.00100	 duration:61.229
+train_loss:0.63393	 train_loss_cls:0.04714	 train_loss_div:0.58678
+train top1_acc: 0.9993 	 train top5_acc:1.0000
+test_loss:0.89745	 test top1_acc:0.7971 	 test top5_acc:0.9513 
+Epoch:191	 lr:0.00100	 duration:61.659
+train_loss:0.62801	 train_loss_cls:0.04680	 train_loss_div:0.58120
+train top1_acc: 0.9993 	 train top5_acc:1.0000
+test_loss:0.89800	 test top1_acc:0.7944 	 test top5_acc:0.9508 
+Epoch:192	 lr:0.00100	 duration:62.370
+train_loss:0.62296	 train_loss_cls:0.04658	 train_loss_div:0.57639
+train top1_acc: 0.9993 	 train top5_acc:1.0000
+test_loss:0.89007	 test top1_acc:0.7976 	 test top5_acc:0.9506 
+Epoch:193	 lr:0.00100	 duration:62.331
+train_loss:0.61632	 train_loss_cls:0.04531	 train_loss_div:0.57101
+train top1_acc: 0.9994 	 train top5_acc:1.0000
+test_loss:0.89959	 test top1_acc:0.7958 	 test top5_acc:0.9511 
+Epoch:194	 lr:0.00100	 duration:58.300
+train_loss:0.61017	 train_loss_cls:0.04485	 train_loss_div:0.56533
+train top1_acc: 0.9994 	 train top5_acc:1.0000
+test_loss:0.89687	 test top1_acc:0.7957 	 test top5_acc:0.9504 
+Epoch:195	 lr:0.00100	 duration:49.391
+train_loss:0.60989	 train_loss_cls:0.04398	 train_loss_div:0.56591
+train top1_acc: 0.9995 	 train top5_acc:1.0000
+test_loss:0.89274	 test top1_acc:0.7960 	 test top5_acc:0.9512 
+Epoch:196	 lr:0.00100	 duration:59.808
+train_loss:0.60066	 train_loss_cls:0.04428	 train_loss_div:0.55638
+train top1_acc: 0.9994 	 train top5_acc:1.0000
+test_loss:0.89296	 test top1_acc:0.7955 	 test top5_acc:0.9496 
+Epoch:197	 lr:0.00100	 duration:60.620
+train_loss:0.59751	 train_loss_cls:0.04429	 train_loss_div:0.55322
+train top1_acc: 0.9994 	 train top5_acc:1.0000
+test_loss:0.89709	 test top1_acc:0.7974 	 test top5_acc:0.9520 
+Epoch:198	 lr:0.00100	 duration:60.212
+train_loss:0.59462	 train_loss_cls:0.04384	 train_loss_div:0.55078
+train top1_acc: 0.9993 	 train top5_acc:1.0000
+test_loss:0.89660	 test top1_acc:0.7948 	 test top5_acc:0.9499 
+Epoch:199	 lr:0.00100	 duration:60.982
+train_loss:0.58753	 train_loss_cls:0.04393	 train_loss_div:0.54360
+train top1_acc: 0.9992 	 train top5_acc:1.0000
+test_loss:0.89025	 test top1_acc:0.7965 	 test top5_acc:0.9503 
+test_loss:0.89007	 test top1_acc:0.7976 	 test top5_acc:0.9506 

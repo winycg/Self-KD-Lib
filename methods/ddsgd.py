@@ -15,7 +15,7 @@ def DDGSD(net, inputs, targets, criterion_cls, criterion_div):
 
     inputs = torch.cat(inputs, dim=0)
     batch_size = inputs.size(0) // 2
-    logit, features = net(inputs, feature=True)
+    logit, features = net(inputs, embedding=True)
     loss_cls += criterion_cls(logit, torch.cat([targets, targets], dim=0)) / 2
     loss_div += criterion_div(logit[:batch_size], logit[batch_size:].detach())
     loss_div += criterion_div(logit[batch_size:], logit[:batch_size].detach())
