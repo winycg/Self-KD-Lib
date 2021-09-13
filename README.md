@@ -1,4 +1,4 @@
-This project provides the implementations of some data augmentation methods, regularization methods, online Knowledge distillation and Self-Knowledge distillation methods.
+This project provides the implementations of some Self-Knowledge distillation, data augmentation methods and  regularization methods and  methods.
 
 ## Installation
 
@@ -62,6 +62,7 @@ The commands for running various methods can be found in `main.sh`
 | Random Erase [6]| AAAI-2020 | 80.64 |
 | Mixup [7]| ICLR-2018 | 81.39 |
 | CutMix [8]| ICCV-2019 | 82.47 |
+| AutoAugment [9]| CVPR-2019 | 81.41 |
 
 [1] Label Smoothing: Rethinking the inception architecture for computer vision. CVPR-2016.
 
@@ -78,5 +79,7 @@ The commands for running various methods can be found in `main.sh`
 [7] Mixup: mixup: Beyond empirical risk minimization. ICLR-2018.
 
 [8] CutMix: Cutmix: Regularization strategy to train strong classifiers with localizable features. ICCV-2019.
+
+[9] Autoaugment: Autoaugment: Learning augmentation strategies from data. CVPR-2019.
 
 

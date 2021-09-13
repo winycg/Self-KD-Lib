@@ -10,6 +10,7 @@ import random
 
 from .random_erase import RandomErasing
 from .cutout import Cutout
+from .autoaugment import CIFAR10Policy
 
 
 class PairBatchSampler(Sampler):
@@ -90,14 +91,17 @@ def load_dataset(args):
     transforms_list = [
     transforms.RandomCrop(32, padding=4),
     transforms.RandomHorizontalFlip(),
-    transforms.ToTensor(),
-    transforms.Normalize([0.5071, 0.4867, 0.4408],
-                        [0.2675, 0.2565, 0.2761]),
     ]
+    if args.data_aug == 'auto_aug':
+        transforms_list.append(CIFAR10Policy())
+    transforms_list.append(transforms.ToTensor())
+    transforms_list.append(transforms.Normalize([0.5071, 0.4867, 0.4408],[0.2675, 0.2565, 0.2761]))
+    
     if args.data_aug == 'cutout': 
         transforms_list.append(Cutout(n_holes=1, length=8))
     if args.data_aug == 'random_erase':
         transforms_list.append(RandomErasing(mean=[0.5071, 0.4867, 0.4408]))
+    
     transform_train = transforms.Compose(transforms_list)
     transform_test = transforms.Compose([
         transforms.ToTensor(),

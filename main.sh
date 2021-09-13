@@ -16,5 +16,5 @@ python main.py --gpu 0 --data /home/ycg/hhd/dataset --method virtual_softmax
 python main.py --gpu 0 --data /home/ycg/hhd/dataset --method Maximum_entropy
 python main.py --gpu 0 --data /home/ycg/hhd/dataset --data-aug cutout --warmup-epoch 5
 python main.py --gpu 0 --data /home/ycg/hhd/dataset --data-aug random_erase --warmup-epoch 5
-
+python main.py --gpu 0 --data /home/ycg/hhd/dataset --data-aug auto_aug --warmup-epoch 5
           
