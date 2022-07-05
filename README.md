@@ -1,4 +1,4 @@
-This project provides the implementations of some Self-Knowledge distillation, data augmentation methods and  regularization methods and  methods.
+This project provides the implementations of some Self-Knowledge distillation, data augmentation methods and  regularization methods.
 
 ## Installation
 
