@@ -18,30 +18,21 @@ def rand_bbox(size, lam):
     cut_h = np.int(H * cut_rat)
 
     # uniform
-    if lam == 0.5:
-        cx = np.random.randint(W + 1 - cut_w)
-        cy = np.random.randint(H + 1 - cut_h)
-        bbx1 = np.clip(cx, 0, W)
-        bby1 = np.clip(cy, 0, H)
-        bbx2 = np.clip(cx + cut_w, 0, W)
-        bby2 = np.clip(cy + cut_h, 0, H)
-    else:
-        cx = np.random.randint(W)
-        cy = np.random.randint(H)
+    cx = np.random.randint(W)
+    cy = np.random.randint(H)
 
-        bbx1 = np.clip(cx - cut_w // 2, 0, W)
-        bby1 = np.clip(cy - cut_h // 2, 0, H)
-        bbx2 = np.clip(cx + cut_w // 2, 0, W)
-        bby2 = np.clip(cy + cut_h // 2, 0, H)
+    bbx1 = np.clip(cx - cut_w // 2, 0, W)
+    bby1 = np.clip(cy - cut_h // 2, 0, H)
+    bbx2 = np.clip(cx + cut_w // 2, 0, W)
+    bby2 = np.clip(cy + cut_h // 2, 0, H)
 
     return bbx1, bby1, bbx2, bby2
 
     
-def cutmix_data(x, y, alpha=0.4):
+def cutmix_data(x, y, alpha=1.0):
     '''Returns mixed inputs, pairs of targets, and lambda'''
     lam = np.random.beta(alpha, alpha)
     batch_size = x.size()[0]
-    bbx1, bby1, bbx2, bby2 = rand_bbox(x.size(), lam)
     rand_index = torch.randperm(x.size()[0]).cuda()
     target_a = y
     target_b = y[rand_index]
@@ -52,7 +43,7 @@ def cutmix_data(x, y, alpha=0.4):
     return x, target_a, target_b, lam, rand_index
 
 
-def CutMix(net, inputs, targets, alpha, criterion_cls):
+def CutMix(net, inputs, targets, criterion_cls, alpha):
     mixed_x, y_a, y_b, lam_mixup, _ = cutmix_data(inputs, targets, alpha=alpha)
     logit = net(mixed_x)
     loss = criterion_cls(logit, y_a) * lam_mixup + criterion_cls(logit, y_b) * (1. - lam_mixup)

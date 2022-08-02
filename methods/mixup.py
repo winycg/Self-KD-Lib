@@ -25,9 +25,11 @@ def mixup_data(x, y, alpha=0.4):
 
     return mixed_x, y_a, y_b, lam, index
 
-def Mixup(net, inputs, targets, alpha, criterion_cls):
+def Mixup(net, inputs, targets, criterion_cls, alpha):
     mixed_x, y_a, y_b, lam_mixup, _ = mixup_data(inputs, targets, alpha=alpha)
     logit = net(mixed_x)
+    if isinstance(logit, list) or isinstance(logit, tuple):
+        logit = logit[0] 
     loss = criterion_cls(logit, y_a) * lam_mixup + criterion_cls(logit, y_b) * (1. - lam_mixup)
     return logit, loss
 

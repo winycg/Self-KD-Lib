@@ -13,6 +13,8 @@ import torch.nn.init as init
 def DKS(net, inputs, targets, criterion_cls, criterion_div):
     loss_div = torch.tensor(0.).cuda()
     loss_cls = torch.tensor(0.).cuda()
+
+    
     outputs = net(inputs)
     for j, output in enumerate(outputs):
         loss_cls += criterion_cls(output, targets)

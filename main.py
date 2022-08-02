@@ -14,7 +14,7 @@ import models
 import torchvision
 import torchvision.transforms as transforms
 from utils import cal_param_size, cal_multi_adds, correct_num, adjust_lr, DistillKL, AverageMeter
-from dataloader.dataloader import load_dataset
+from dataloader.dataloaders import load_dataset
 
 
 import time
@@ -23,11 +23,11 @@ import math
 parser = argparse.ArgumentParser(description='PyTorch CIFAR Training')
 parser.add_argument('--dataset', default='CIFAR-100', type=str, help='Dataset')
 parser.add_argument('--data', default='./data/', type=str, help='Dataset directory')
-parser.add_argument('--arch', default='CIFAR_ResNet50', type=str, help='network architecture')
+parser.add_argument('--arch', default='CIFAR_ResNet18', type=str, help='network architecture')
 parser.add_argument('--init-lr', default=0.1, type=float, help='learning rate')
-parser.add_argument('--warmup-epoch', default=0, type=int, help='warmup epoch')
+parser.add_argument('--warmup-epoch', default=5, type=int, help='warmup epoch')
 parser.add_argument('--lr-type', default='multistep', type=str, help='learning rate strategy')
-parser.add_argument('--data-aug', default=None, type=str, help='extra data augmentation')
+parser.add_argument('--data-aug', default='None', type=str, help='extra data augmentation')
 parser.add_argument('--milestones', default=[100, 150], type=list, help='milestones for lr-multistep')
 parser.add_argument('--epochs', type=int, default=200, help='number of epochs to train')
 parser.add_argument('--batch-size', type=int, default=128, help='batch size')
@@ -38,9 +38,11 @@ parser.add_argument('--weight-decay', type=float, default=5e-4, help='weight dec
 parser.add_argument('--weight-cls', type=float, default=1, help='weight for cross-entropy loss')
 parser.add_argument('--weight-kd', type=float, default=1, help='weight for KD loss')
 parser.add_argument('--T', type=float, default=4, help='temperature for KD distillation')
-parser.add_argument('--mix-alpha', type=float, default=0.4, help='alpha of Mixup and CutMix')
+parser.add_argument('--omega', default=0.5, type=float, help='ensembling weight in BAKE')
+parser.add_argument('--intra-imgs', '-m', default=3, type=int, help='intra-class images, M in BAKE')
+parser.add_argument('--alpha-T', default=0.8, type=float, help='alpha T in PS-KD')
 parser.add_argument('--manual_seed', type=int, default=0)
-parser.add_argument('--checkpoint-dir', default='./checkpoint', type=str, help='saved checkpoint directory')
+parser.add_argument('--checkpoint-dir', default='./checkpoint/', type=str, help='saved checkpoint directory')
 parser.add_argument('--eval-checkpoint', default='./checkpoint/resnet18_best.pth', type=str, help='evaluate checkpoint directory')
 parser.add_argument('--resume-checkpoint', default='./checkpoint/resnet18.pth', type=str, help='resume checkpoint directory')
 parser.add_argument('--resume', '-r', action='store_true', help='resume from checkpoint')
@@ -50,9 +52,7 @@ parser.add_argument('--evaluate', '-e', action='store_true', help='evaluate mode
 args = parser.parse_args()
 print(args)
 os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu_id
-# create files and folders
-if not os.path.isdir('result'):
-    os.mkdir('result')
+
 
 info = str(os.path.basename(__file__).split('.')[0]) \
           + '_dataset_' + args.dataset \
@@ -61,10 +61,11 @@ info = str(os.path.basename(__file__).split('.')[0]) \
           + '_data_aug_' + args.data_aug \
           + '_' + str(args.manual_seed)
 
-args.log_txt = 'result/' + info + '.txt'
+
 args.checkpoint_dir = os.path.join(args.checkpoint_dir, info)
 if not os.path.isdir(args.checkpoint_dir):
     os.makedirs(args.checkpoint_dir)
+args.log_txt = os.path.join(args.checkpoint_dir, info + '.txt')
 
 print('dir for checkpoint:', args.checkpoint_dir)
 with open(args.log_txt, 'a+') as f:
@@ -98,6 +99,7 @@ if args.method == 'virtual_softmax':
 else:
     net = model(num_classes=num_classes).eval()
 
+
 print('Arch: %s, Params: %.2fM, Multi-adds: %.2fG'
     % (args.arch, cal_param_size(net) / 1e6, cal_multi_adds(net, (1, C, H, W)) / 1e9))
 
@@ -129,6 +131,12 @@ def train(epoch, criterion_list, optimizer):
     criterion_cls = criterion_list[0]
     criterion_div = criterion_list[1]
 
+    if args.method.startswith('PSKD'):
+        if epoch == 0:
+            all_predictions = torch.zeros(len(trainloader.dataset), num_classes, dtype=torch.float32)
+        else:
+            all_predictions = torch.load(os.path.join(args.checkpoint_dir, 'predictions.pth.tar'), map_location=torch.device('cpu'))['prev_pred']
+    
     net.train()
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         batch_start_time = time.time()
@@ -137,7 +145,12 @@ def train(epoch, criterion_list, optimizer):
             batch_size = inputs.size(0)
         else:
             batch_size = inputs[0].size(0)
-        targets = targets.cuda()
+        
+        if isinstance(targets, list) is False:
+            targets = targets.cuda()
+        else:
+            input_indices = targets[1].cuda()
+            targets = targets[0].cuda()
 
         if epoch < args.warmup_epoch:
             lr = adjust_lr(optimizer, epoch, args, batch_idx, len(trainloader))
@@ -150,10 +163,13 @@ def train(epoch, criterion_list, optimizer):
             logit = net(inputs)
             loss_cls += criterion_cls(logit, targets)
         elif args.method == 'mixup':   
-            logit, mixup_loss = Mixup(net, inputs, targets, args.mix_alpha, criterion_cls)
+            logit, mixup_loss = Mixup(net, inputs, targets, criterion_cls, alpha=0.4)
             loss_cls += mixup_loss
+        elif args.method == 'manifold_mixup':   
+            logit, manifold_mixup_loss = ManifoldMixup(net, inputs, targets, criterion_cls, alpha=2.0)
+            loss_cls += manifold_mixup_loss
         elif args.method == 'cutmix':   
-            logit, cutmix_loss = CutMix(net, inputs, targets, args.mix_alpha, criterion_cls)
+            logit, cutmix_loss = CutMix(net, inputs, targets, criterion_cls, alpha=1.0)
             loss_cls += cutmix_loss
         elif args.method == 'label_smooth':
             logit = net(inputs)
@@ -199,10 +215,21 @@ def train(epoch, criterion_list, optimizer):
             batch_size = batch_size // 2
             loss_cls += cs_kd_loss_cls
             loss_div += cs_kd_loss_div
-        elif args.method == 'FRSKD':
+            
+        elif args.method.startswith('FRSKD'):
             logit, frskd_loss_cls, frskd_loss_div = FRSKD(net, inputs, targets, criterion_cls, criterion_div)
             loss_cls += frskd_loss_cls
             loss_div += frskd_loss_div
+
+        elif args.method.startswith('PSKD'):
+            logit, pskd_loss_cls = PSKD(net, inputs, targets, input_indices, epoch, all_predictions, num_classes, args)
+            loss_cls += pskd_loss_cls
+
+        elif args.method.startswith('BAKE'):
+            logit, bake_loss_cls, bake_loss_div = BAKE(net, inputs, targets, criterion_cls, criterion_div, args)
+            loss_cls += bake_loss_cls
+            loss_div += bake_loss_div
+    
         else:
             raise ValueError('Unknown method: {}'.format(args.method))
         loss = loss_cls + loss_div
@@ -232,6 +259,10 @@ def train(epoch, criterion_list, optimizer):
     print(train_info)
     with open(args.log_txt, 'a+') as f:
         f.write(train_info+'\n')
+
+    if args.method.startswith('PSKD'):
+        torch.save({'prev_pred': all_predictions.cpu()}, os.path.join(args.checkpoint_dir, 'predictions.pth.tar'))
+
 
 
 def test(epoch, criterion_list):
@@ -337,8 +368,7 @@ if __name__ == '__main__':
         start_epoch = checkpoint['epoch']
         top1_acc = test(start_epoch, criterion_list)
 
-        with open(log_txt, 'a+') as f:
+        with open(args.log_txt, 'a+') as f:
             f.write('best_accuracy: {} \n'.format(best_acc))
         print('best_accuracy: {} \n'.format(best_acc))
-        os.system('cp ' + log_txt + ' ' + args.checkpoint_dir)
 

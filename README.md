@@ -1,4 +1,4 @@
-This project provides the implementations of some Self-Knowledge distillation, data augmentation methods and  regularization methods.
+This project provides the implementations of some data augmentation methods, regularization methods, online Knowledge distillation and Self-Knowledge distillation methods.
 
 ## Installation
 
@@ -10,9 +10,7 @@ Python 3.8 ([Anaconda](https://www.anaconda.com/) is recommended)
 
 CUDA 11.1
 
-PyTorch 1.6.0
-
-NCCL for CUDA 11.1
+PyTorch 1.12 + torchvision 0.13
 
 ## Perform experiments on CIFAR-100 dataset
 ### Dataset
@@ -22,64 +20,151 @@ unzip to the `./data` folder
 
 The commands for running various methods can be found in `main.sh` 
 
-#### Comparison of Self-KD methods on ResNet-50
-| Method | Venue | Accuracy(%) |
-|:---------------:|:-----------------:|:-----------------:|
-| Cross-entropy | - | 77.79 |
-| DDGSD [1] |  AAAI-2019 | 81.73 |
-| DKS [2]|  CVPR-2019 | 80.75 |
-| SAD [3] |  ICCV-2019 | 78.33 |
-| BYOT [4] |  ICCV-2019 | 79.76 |
-| Tf-KD-reg [5] | CVPR-2020 | 79.84 | 
-| CS-KD [6]|  CVPR-2020 | 79.99 |
-|  FRSKD [7]|  CVPR-2021 |  80.51  |
+<table>
+	<tr>
+	    <th colspan="4">Top-1 accuracy(%) of Self-KD and Data Augmentation (DA) methods on ResNet-18</th>
+	</tr >
+	<tr>
+	    <td >Type</td>
+	    <td>Method</td>
+	    <td>Venue</td>  
+      <td>Accuracy(%)</td>  
+	</tr >
+	<tr >
+    <td>Baseline</td>
+	    <td>Cross-entropy</td>
+	    <td>-</td>
+	    <td>76.24</td>
+	</tr>
+  <tr >
+  <td rowspan="10">Self-KD</td>
+	    <td>DDGSD [1]</td>
+	    <td>AAAI-2019</td>
+	    <td>76.61</td>
+	</tr>
+  <tr >
+	    <td>DKS [2]</td>
+	    <td>CVPR-2019</td>
+	    <td>78.64</td>
+	</tr>
+    <tr >
+	    <td>SAD [3]</td>
+	    <td>ICCV-2019</td>
+	    <td>76.40</td>
+	</tr>
+  	</tr>
+    <tr >
+	    <td>BYOT [4]</td>
+	    <td>ICCV-2019</td>
+	    <td>77.88</td>
+	</tr>
+      <tr >
+	    <td>Tf-KD-reg [5]</td>
+	    <td>CVPR-2020</td>
+	    <td>76.61</td>
+	</tr>
+  </tr>
+      <tr >
+	    <td>CS-KD [6]</td>
+	    <td>CVPR-2020</td>
+	    <td>78.66</td>
+	</tr>
+    </tr>
+    <tr >
+	    <td>FRSKD [7]</td>
+	    <td>CVPR-2021</td>
+	    <td>77.71</td>
+	</tr>
+	<tr >
+	    <td>PS-KD [8]</td>
+	    <td>ICCV-2021</td>
+	    <td>79.31</td>
+	</tr>
+	<tr >
+	    <td>BAKE [9]</td>
+	    <td>arXiv:2104.13298</td>
+	    <td>76.93</td>
+	</tr>
+    <tr >
+	    <td>MixSKD [10]</td>
+	    <td>ECCV-2022</td>
+	    <td>80.32</td>
+	</tr>
+    <tr >
+  <td rowspan="12">DA</td>
+	    <td>Label Smoothing [1]</td>
+	    <td>CVPR-2016</td>
+	    <td>78.72</td>
+	</tr>
+  <tr >
+	    <td>Virtual Softmax [2]</td>
+	    <td>NeurIPS-2018</td>
+	    <td>78.54</td>
+	</tr>
+    <tr >
+	    <td>Focal Loss [3]</td>
+	    <td>ICCV-2017</td>
+	    <td>76.19</td>
+	</tr>
+  <tr >
+	    <td>Maximum Entropy [4]</td>
+	    <td>ICLR Workshops 2017</td>
+	    <td>76.50</td>
+	</tr>
+    <tr >
+	    <td>Cutout [5]</td>
+	    <td>arXiv:1708.04552</td>
+	    <td>76.66</td>
+	</tr>
+	<tr >
+	    <td>Random Erase [6]</td>
+	    <td>AAAI-2020</td>
+	    <td>76.75</td>
+	</tr>
+	<tr >
+	    <td>Mixup [7]</td>
+	    <td>ICLR-2018</td>
+	    <td>78.68</td>
+	</tr>
+	<tr >
+	    <td>CutMix [8]</td>
+	    <td>ICCV-2019</td>
+	    <td>80.17</td>
+	</tr>
+	<tr >
+	    <td>AutoAugment [9]</td>
+	    <td>CVPR-2019</td>
+	    <td>77.97</td>
+	</tr>
+	<tr >
+	    <td>RandAugment [10]</td>
+	    <td>CVPR Workshops-2020</td>
+	    <td>76.86</td>
+	</tr>
+	<tr >
+	    <td>AugMix [11]</td>
+	    <td>arXiv:1912.02781</td>
+	    <td>76.22</td>
+	</tr>
+	<tr >
+	    <td>TrivalAugment [12]</td>
+	    <td>ICCV-2021</td>
+	    <td>76.03</td>
+	</tr>
+	
+</table>
 
-##### Reference
-[1] DDGSD: Data-Distortion Guided Self-Distillation for Deep Neural Networks. AAAI-2019
+Some implementations are referred by the official code. Thanks the papers' authors for their released code.
 
-[2] DKS: Deeply-supervised Knowledge Synergy. CVPR-2019.
+If you find this repository useful, please consider citing the following paper:
 
-[3] SAD: Learning Lightweight Lane Detection CNNs by Self Attention Distillation. ICCV-2019.
-
-[4] BYOT: Be Your Own Teacher: Improve the Performance of Convolutional Neural Networks via Self Distillation. ICCV-2019
-
-[5] Tf-KD-reg: Revisiting Knowledge Distillation via Label Smoothing Regularization. CVPR-2020.
-
-[6] CS-KD: Regularizing Class-wise Predictions via Self-knowledge Distillation. CVPR-2020.
-
-[7] FRSKD: Refine Myself by Teaching Myself: Feature Refinement via Self-Knowledge Distillation. CVPR-2021.
-
-#### Comparison of advanced regularization methods Self-KD methods on ResNet-50
-
-| Method | Venue | Accuracy |
-|:---------------:|:-----------------:|:-----------------:|
-| Cross-entropy | - | 77.79 | 
-| Label Smoothing [1] | CVPR-2016 | 80.33 | 
-| Virtual Softmax [2] | NeurIPS-2018 | 79.68 | 
-| Focal Loss [3]| ICCV-2017 | 79.31 | 
-| Maximum Entropy [4] | ICLR Workshops 2017 | 78.11 | 
-| Cutout [5]| ArXiv.2017 | 80.42 |
-| Random Erase [6]| AAAI-2020 | 80.64 |
-| Mixup [7]| ICLR-2018 | 81.39 |
-| CutMix [8]| ICCV-2019 | 82.47 |
-| AutoAugment [9]| CVPR-2019 | 81.41 |
-
-[1] Label Smoothing: Rethinking the inception architecture for computer vision. CVPR-2016.
-
-[2] Virtual Softmax:  Virtual class enhanced discriminative embedding learning. NeurIPS-2018.
-
-[3] Focal Loss: Focal loss for dense object detection. ICCV-2017. 
-
-[4] Maximum Entropy: Regularizing neural networks by penalizing confident output distributions. ICLR Workshops 2017.
-
-[5] Cutout: Improved regularization of convolutional neural networks with cutout. arXiv preprint arXiv:1708.04552
-
-[6] Random Erase: Random erasing data augmentation. AAAI-2020.
-
-[7] Mixup: mixup: Beyond empirical risk minimization. ICLR-2018.
-
-[8] CutMix: Cutmix: Regularization strategy to train strong classifiers with localizable features. ICCV-2019.
-
-[9] Autoaugment: Autoaugment: Learning augmentation strategies from data. CVPR-2019.
+```
+@inproceedings{yang2022mixskd,
+  title={MixSKD: Self-Knowledge Distillation from Mixup for Image Recognition},
+  author={Yang, Chuanguang and An, Zhulin and Zhou, Helong and  Cai, Linhang and Zhi, Xiang and Wu, Jiwen and Xu, Yongjun and Zhang, Qian},
+  booktitle={European Conference on Computer Vision},
+  year={2022}
+}
+```
 
 

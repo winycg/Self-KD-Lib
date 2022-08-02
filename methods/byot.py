@@ -9,6 +9,7 @@ import torch
 import torch.nn.functional as F
 import torch.nn.init as init
 
+
 def BYOT(net, inputs, targets, criterion_cls, criterion_div):
     loss_div = torch.tensor(0.).cuda()
     loss_cls = torch.tensor(0.).cuda()

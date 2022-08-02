@@ -3,9 +3,16 @@ import torch.nn as nn
 import torch.nn.functional as F
 import math 
 
-from .resnet import CIFAR_ResNet18, CIFAR_ResNet50
+import sys
 
-__all__ = ['BiFPNc', 'CIFAR_ResNet18_BiFPN', 'CIFAR_ResNet50_BiFPN']
+sys.path.append('.')
+sys.path.append('..')
+
+from .resnet import CIFAR_ResNet18, CIFAR_ResNet50
+from .resnet_imagenet import resnet18_imagenet
+
+__all__ = ['BiFPNc', 'CIFAR_ResNet18_BiFPN', 'CIFAR_ResNet50_BiFPN',
+            'ResNet18_BiFPN']
 
 
 class MaxPool2dStaticSamePadding(nn.Module):
@@ -187,8 +194,20 @@ class BiFPN_layer(nn.Module):
 class CIFAR_ResNet18_BiFPN(nn.Module):
     def __init__(self, num_classes=100):
         super(CIFAR_ResNet18_BiFPN, self).__init__()
-        self.backbone = CIFAR_ResNet18(num_classes=100)
+        self.backbone = resnet18_imagenet(num_classes=100)
         self.bifpn = BiFPNc(self.backbone.network_channels, num_classes, repeat=1, depth=[2] * 3, width=2)
+
+    def forward(self, x):
+        logit, features = self.backbone(x, feature=True)
+        bi_feats, bi_logits = self.bifpn(features, preact=True)
+        return logit, features, bi_feats, bi_logits
+
+
+class ResNet18_BiFPN(nn.Module):
+    def __init__(self, num_classes=100):
+        super(ResNet18_BiFPN, self).__init__()
+        self.backbone = resnet18_imagenet(num_classes=num_classes)
+        self.bifpn = BiFPNc(self.backbone.network_channels, num_classes, repeat=1, depth=[1] * 3, width=1)
 
     def forward(self, x):
         logit, features = self.backbone(x, feature=True)
@@ -199,7 +218,7 @@ class CIFAR_ResNet18_BiFPN(nn.Module):
 class CIFAR_ResNet50_BiFPN(nn.Module):
     def __init__(self, num_classes=100):
         super(CIFAR_ResNet50_BiFPN, self).__init__()
-        self.backbone = CIFAR_ResNet50(num_classes=100)
+        self.backbone = CIFAR_ResNet50(num_classes=num_classes)
         self.bifpn = BiFPNc(self.backbone.network_channels, num_classes, repeat=1, depth=[1] * 3, width=1)
 
     def forward(self, x):
@@ -210,8 +229,8 @@ class CIFAR_ResNet50_BiFPN(nn.Module):
 
 
 if __name__ == '__main__':
-    net = CIFAR_ResNet50_BiFPN(num_classes=100)
-    x = torch.randn(2, 3, 32, 32)
+    net = ResNet18_BiFPN(num_classes=100)
+    x = torch.randn(2, 3, 224, 224)
     y = net(x)
     import sys
     sys.path.append('..')

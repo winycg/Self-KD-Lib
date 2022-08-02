@@ -1,4 +1,5 @@
 from .mixup import Mixup
+from .manifold_mixup import ManifoldMixup
 from .cutmix import CutMix
 from .byot import BYOT
 from .sad import SAD
@@ -9,3 +10,6 @@ from .label_smooth import LabelSmooth
 from .tf_kd_reg import TF_KD_reg
 from .cs_kd import CS_KD
 from .frskd import FRSKD
+from .adversarial import discriminatorLoss
+from .bake import BAKE
+from .ps_kd import PSKD

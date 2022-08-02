@@ -2,9 +2,13 @@ import torch
 import torch.nn as nn
 import torch.utils.model_zoo as model_zoo
 import torch.nn.functional as F
+import random
+import numpy as np
+
 
 __all__ = ['CIFAR_ResNet18', 'CIFAR_ResNet18_dks', 'CIFAR_ResNet18_byot',
-            'CIFAR_ResNet50', 'CIFAR_ResNet50_dks', 'CIFAR_ResNet50_byot']
+            'CIFAR_ResNet50', 'CIFAR_ResNet50_dks', 'CIFAR_ResNet50_byot',
+            'manifold_mixup_CIFAR_ResNet18', 'manifold_mixup_CIFAR_ResNet50']
 
 
 def conv3x3(in_planes, out_planes, stride=1, groups=1):
@@ -172,6 +176,7 @@ class CIFAR_ResNet(nn.Module):
             self.in_planes = planes * block.expansion
         return nn.Sequential(*layers)
 
+
     def forward(self, x, y=None, loss_type='cross_entropy', feature=False, embedding=False):
         out = x
         out = self.conv1(out)
@@ -192,7 +197,6 @@ class CIFAR_ResNet(nn.Module):
             f2 = x
             x = self.avgpool(x)
             x = x.view(x.size(0), -1)
-            embedding2 = x
 
             x2 = self.fc_head2(x)
 
@@ -200,7 +204,7 @@ class CIFAR_ResNet(nn.Module):
             f1 = x
             x = self.avgpool(x)
             x = x.view(x.size(0), -1)
-            embedding1 = x
+
             x1 = self.fc_head1(x)
             if feature:
                 return [out, x1, x2], [embedding0, f0, f1, f2]
@@ -222,6 +226,88 @@ class CIFAR_ResNet(nn.Module):
                 return out
 
 
+class ManifoldMixupCIFAR_ResNet(nn.Module):
+    def __init__(self, block, num_blocks, num_classes=100):
+        super(ManifoldMixupCIFAR_ResNet, self).__init__()
+        self.network_channels = [64 * block.expansion, 128 * block.expansion, 256 * block.expansion, 512 * block.expansion]
+
+        self.in_planes = 64
+        self.conv1 = conv3x3(3,64)
+        self.bn1 = nn.BatchNorm2d(64)
+        self.layer1 = self._make_layer(block, 64, num_blocks[0], stride=1)
+        self.layer2 = self._make_layer(block, 128, num_blocks[1], stride=2)
+        inplanes_head2 = self.in_planes
+        self.layer3 = self._make_layer(block, 256, num_blocks[2], stride=2)
+        inplanes_head1 = self.in_planes
+        self.layer4 = self._make_layer(block, 512, num_blocks[3], stride=2)
+        self.fc = nn.Linear(512*block.expansion, num_classes)
+        self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
+
+
+    def manifold_mixup(self, x, y, alpha=2.0):
+        lam = np.random.beta(alpha, alpha)
+        batch_size = x.size()[0]
+        index = torch.randperm(batch_size).cuda()
+        mixed_x = lam * x + (1 - lam) * x[index, :]
+        y_a, y_b = y, y[index]
+
+        return mixed_x, y_a, y_b, lam
+
+    def _make_layer(self, block, planes, num_blocks, stride):
+        strides = [stride] + [1]*(num_blocks-1)
+        layers = []
+        for stride in strides:
+            layers.append(block(self.in_planes, planes, stride))
+            self.in_planes = planes * block.expansion
+        return nn.Sequential(*layers)
+
+    def forward(self, x, y=None, alpha=2.0):
+        index = random.randint(1,4)
+        if self.training is False:
+            index = -1
+        out = x
+        out = self.conv1(out)
+        out = self.bn1(out)
+        out = F.relu(out)
+        if index == 1:
+            mixed_x, y_a, y_b, lam = self.manifold_mixup(out, y)
+            out = mixed_x
+
+        out = self.layer1(out)
+
+        if index == 2:
+            mixed_x, y_a, y_b, lam = self.manifold_mixup(out, y)
+            out = mixed_x
+
+        out = self.layer2(out)
+
+        if index == 3:
+            mixed_x, y_a, y_b, lam = self.manifold_mixup(out, y)
+            out = mixed_x
+
+        out = self.layer3(out)
+
+        if index == 4:
+            mixed_x, y_a, y_b, lam = self.manifold_mixup(out, y)
+            out = mixed_x
+
+        out = self.layer4(out)
+
+        out = self.avgpool(out)
+        embedding0 = out.view(out.size(0), -1)
+        out = self.fc(embedding0)
+
+        if self.training is False:
+            return out
+        else:
+            return out, y_a, y_b, lam
+
+
+def manifold_mixup_CIFAR_ResNet18(**kwargs):
+    return ManifoldMixupCIFAR_ResNet(PreActBlock, [2,2,2,2], **kwargs)
+
+def manifold_mixup_CIFAR_ResNet50(**kwargs):
+    return ManifoldMixupCIFAR_ResNet(Bottleneck, [2,2,2,2], **kwargs)
 
 def CIFAR_ResNet18(pretrained=False, **kwargs):
     return CIFAR_ResNet(PreActBlock, [2,2,2,2], branch_layers=[], **kwargs)
@@ -236,10 +322,10 @@ def CIFAR_ResNet50(pretrained=False, **kwargs):
     return CIFAR_ResNet(Bottleneck, [3,4,6,3], branch_layers=[], **kwargs)
 
 def CIFAR_ResNet50_dks(pretrained=False, **kwargs):
-    return CIFAR_ResNet(Bottleneck, [2,2,2,2], branch_layers=[[1, 2], [2]], **kwargs)
+    return CIFAR_ResNet(Bottleneck, [3,4,6,3], branch_layers=[[1, 2], [2]], **kwargs)
 
 def CIFAR_ResNet50_byot(pretrained=False, **kwargs):
-    return CIFAR_ResNet(Bottleneck, [2,2,2,2], branch_layers=[[1, 1], [1]], **kwargs)
+    return CIFAR_ResNet(Bottleneck, [3,4,6,3], branch_layers=[[1, 1], [1]], **kwargs)
 
 
 if __name__ == '__main__':
