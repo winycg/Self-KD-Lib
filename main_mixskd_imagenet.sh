@@ -1,0 +1,11 @@
+python main_mixskd_imagenet.py \
+    --data /home/users/chuanguang.yang/winycg/dataset/imagenet/origin/ \
+    --arch MixSKD_ImageNet_ResNet50 \
+    --dist-url 'tcp://127.0.0.1:2222' \
+    --dist-backend 'nccl' \
+    --num-workers 4 \
+    --checkpoint-dir /home/users/chuanguang.yang/winycg/checkpoints \
+    --batch-size 8 \
+    --multiprocessing-distributed \
+    --gpu-id 1,2 \
+    --world-size 1 --rank 0 --manual_seed 0

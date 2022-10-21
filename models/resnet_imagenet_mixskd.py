@@ -218,7 +218,7 @@ class Auxiliary_Classifier(nn.Module):
                  norm_layer=None):
         super(Auxiliary_Classifier, self).__init__()
         
-        layers = [1, 1, 1, 1]
+        layers = [3, 4, 6, 3]
         self.dilation = 1
         self.groups = groups
         self.base_width = width_per_group
@@ -303,7 +303,6 @@ class ResNet_Final_Auxiliary_Classifer(nn.Module):
 
         return out
 
-
 class ResNet_Auxiliary(nn.Module):
     def __init__(self, block, layers, num_classes=1000, zero_init_residual=False):
         super(ResNet_Auxiliary, self).__init__()
@@ -311,13 +310,14 @@ class ResNet_Auxiliary(nn.Module):
         self.auxiliary_classifier = Auxiliary_Classifier(block, layers, num_classes=num_classes, zero_init_residual=zero_init_residual)
         self.final_aux_classifier = ResNet_Final_Auxiliary_Classifer(block, num_classes) 
 
-    def forward(self, x, lam=0.5):
+    def forward(self, x, lam=0.5, index=None):
         logits, features = self.backbone(x, is_feat=True)
         aux_logits, aux_feats = self.auxiliary_classifier(features[:-1])
         aux_feats.append(features[-1])
-        aux_logits.append(logits)
         bs = features[0].size(0)
-        
+
+        aux_logits.append(logits)
+
         if self.training is False:
             return aux_logits, aux_feats
 
@@ -327,16 +327,18 @@ class ResNet_Auxiliary(nn.Module):
         ensemle_logits = self.final_aux_classifier(ensemble_features)
         ensemble_mixup_logits = self.final_aux_classifier(ensemble_mixup_features)
 
-        
         return aux_logits, aux_feats, ensemle_logits, ensemble_mixup_logits
 
 
+def ImageNet_ResNet50(**kwargs):
+    return ResNet(Bottleneck, [3, 4, 6, 3], **kwargs)
 
 def MixSKD_ImageNet_ResNet50(**kwargs):
     return ResNet_Auxiliary(Bottleneck, [3, 4, 6, 3], **kwargs)
 
 if __name__ == '__main__':
     net = MixSKD_ImageNet_ResNet50(num_classes=1000)
+    net.eval()
     from utils import cal_param_size, cal_multi_adds
     print('Params: %.2fM, Multi-adds: %.3fM'
           % (cal_param_size(net) / 1e6, cal_multi_adds(net, (2, 3, 224, 224)) / 1e6))

@@ -18,7 +18,7 @@ CIFAR-100 : [download](http://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz)
 
 unzip to the `./data` folder
 
-The commands for running various methods can be found in `main.sh` 
+The commands for running various methods can be found in [main_cifar.sh](https://github.com/winycg/Self-KD-Lib/blob/main/scripts/main_cifar.sh)
 
 <table>
 	<tr>
@@ -155,6 +155,26 @@ The commands for running various methods can be found in `main.sh`
 </table>
 
 Some implementations are referred by the official code. Thanks the papers' authors for their released code.
+
+
+## Perform experiments on ImageNet dataset
+| MixSKD | Top-1 Accuracy | Script | Pretrained Model|
+| -- | -- | -- |-- |
+|  ResNet-50 | 78.76|[sh](https://github.com/winycg/Self-KD-Lib/blob/main/scripts/main_mixskd_imagenet.sh)|[Baidu Cloud](https://pan.baidu.com/s/1X_jJoP7KedjcO2BV3s5FZQ?pwd=1rdr ) |
+
+## Perform experiments of downstream object detection on COCO
+Our implementation of object detection is based on MMDetection. Please refer the detailed guideline at  [https://github.com/winycg/detection](https://github.com/winycg/detection ).
+| Framework | mAP | Log | Pretrained Model|
+| -- | -- | -- |-- |
+|  Cascade-Res50 | 41.6 |[Baidu Cloud](https://pan.baidu.com/s/1BhlI_uQZSO6KiBo7k-fWEA?pwd=kkxe ) |[Baidu Cloud](https://pan.baidu.com/s/1eT_rFkxztuTi8iNMGmvW2g?pwd=oc22 ) |
+
+## Perform experiments on downstream semantic segmentation
+The training script are based on our previous released segmentation codebase: [https://github.com/winycg/CIRKD](https://github.com/winycg/CIRKD )
+| Dataset | mIoU | Script | Log | Pretrained Model|
+| -- | -- | -- |-- |-- |
+|  ADE20K | 42.37|[sh](https://github.com/winycg/Self-KD-Lib/blob/main/scripts/segmentation/ade20k.sh)|[Baidu Cloud](https://pan.baidu.com/s/1AisXtqqcNXjsv5K0yqr5bQ?pwd=yffl ) |[Baidu Cloud](https://pan.baidu.com/s/15wu2PP8AoOBJAblPvEIMHw?pwd=sbzp ) |
+|  COCO-Stuff-164K | 37.12|[sh](https://github.com/winycg/Self-KD-Lib/blob/main/scripts/segmentation/coco_stuff_164K.sh)|[Baidu Cloud](https://pan.baidu.com/s/1QYHcd8rHwTRJn3b_4Mdgkw?pwd=vgh0 ) |[Baidu Cloud](https://pan.baidu.com/s/1ViHjasWkZ1dtrN3hDW6psw?pwd=rwbe ) |
+|  Pascal VOC | 78.78|[sh](https://github.com/winycg/Self-KD-Lib/blob/main/scripts/segmentation/pascal_voc.sh)|[Baidu Cloud](https://pan.baidu.com/s/1yr6tZMImtBys4ASpJH4-mQ?pwd=l77q ) |[Baidu Cloud](https://pan.baidu.com/s/1cIEcvXQOGugfOWUU3RmZnQ?pwd=2479 ) |
 
 If you find this repository useful, please consider citing the following paper:
 
