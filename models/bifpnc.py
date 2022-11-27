@@ -194,7 +194,7 @@ class BiFPN_layer(nn.Module):
 class CIFAR_ResNet18_BiFPN(nn.Module):
     def __init__(self, num_classes=100):
         super(CIFAR_ResNet18_BiFPN, self).__init__()
-        self.backbone = resnet18_imagenet(num_classes=100)
+        self.backbone = CIFAR_ResNet18(num_classes=100)
         self.bifpn = BiFPNc(self.backbone.network_channels, num_classes, repeat=1, depth=[2] * 3, width=2)
 
     def forward(self, x):
