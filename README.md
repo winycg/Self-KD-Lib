@@ -158,9 +158,9 @@ Some implementations are referred by the official code. Thanks the papers' autho
 
 
 ## Perform experiments on ImageNet dataset
-| MixSKD | Top-1 Accuracy | Script | Pretrained Model|
+| MixSKD | Top-1 Accuracy | Script | Log | Pretrained Model|
 | -- | -- | -- |-- |
-|  ResNet-50 | 78.76|[sh](https://github.com/winycg/Self-KD-Lib/blob/main/scripts/main_mixskd_imagenet.sh)|[Baidu Cloud](https://pan.baidu.com/s/1X_jJoP7KedjcO2BV3s5FZQ?pwd=1rdr ) |
+|  ResNet-50 | 78.76|[sh](https://github.com/winycg/Self-KD-Lib/blob/main/scripts/main_mixskd_imagenet.sh)|[Baidu Cloud](https://pan.baidu.com/s/1l8TcasP7IQ9BCyGjroGBOQ?pwd=hscq) |[Baidu Cloud](https://pan.baidu.com/s/1X_jJoP7KedjcO2BV3s5FZQ?pwd=1rdr ) |
 
 ## Perform experiments of downstream object detection on COCO
 Our implementation of object detection is based on MMDetection. Please refer the detailed guideline at  [https://github.com/winycg/detection](https://github.com/winycg/detection ).
