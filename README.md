@@ -154,7 +154,7 @@ The commands for running various methods can be found in [main_cifar.sh](https:/
 	
 </table>
 
-Some implementations are referred by the official code. Thanks the papers' authors for their released code. The results are reproduced by our released code, so it may not strictly consistent with the original papers.
+Some implementations are referred by the official code. Thanks the papers' authors for their released code. The results are reproduced by our released code, so it may be not strictly consistent with the original papers.
 
 
 ## Perform experiments on ImageNet dataset
