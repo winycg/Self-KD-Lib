@@ -73,7 +73,7 @@ The commands for running various methods can be found in [main_cifar.sh](https:/
     <tr >
 	    <td>FRSKD [7]</td>
 	    <td>CVPR-2021</td>
-	    <td>77.71</td>
+	    <td>76.60</td>
 	</tr>
 	<tr >
 	    <td>PS-KD [8]</td>
@@ -154,7 +154,7 @@ The commands for running various methods can be found in [main_cifar.sh](https:/
 	
 </table>
 
-Some implementations are referred by the official code. Thanks the papers' authors for their released code.
+Some implementations are referred by the official code. Thanks the papers' authors for their released code. The results are reproduced by our released code, so it may not strictly consistent with the original papers.
 
 
 ## Perform experiments on ImageNet dataset
